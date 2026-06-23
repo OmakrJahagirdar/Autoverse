@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>About Us — AutoVerse Industries</title>
+<link rel="stylesheet" href="assets/css/style.css"/>
+<link rel="stylesheet" href="assets/css/inner.css"/>
+<style>
+/* About hero two-col override */
+.about-page-hero {
+  position: relative;
+  min-height: 480px;
+  background: linear-gradient(135deg,#060f1e 0%,#0B1F3A 45%,#112a4a 100%);
+  overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.about-hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: 120px 0 56px;
+  position: relative; z-index: 2;
+}
+.about-hero-text .breadcrumb { margin-bottom: 20px; }
+.about-hero-text h1 {
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  color: #fff; line-height: 1.05;
+  margin-bottom: 18px;
+}
+.about-hero-text p {
+  color: rgba(255,255,255,.55);
+  font-size: 1.05rem; font-weight: 300;
+  max-width: 440px; line-height: 1.7;
+}
+.about-hero-badges {
+  display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap;
+}
+.about-hero-badge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 40px;
+  padding: 7px 14px;
+  font-family: var(--ff-ui);
+  font-size: .75rem; color: rgba(255,255,255,.7);
+}
+.about-hero-badge svg { width: 13px; height: 13px; color: var(--orange); }
+.about-hero-visual {
+  position: relative;
+  display: flex; align-items: flex-end; justify-content: center;
+}
+.about-hero-visual::before {
+  content: '';
+  position: absolute;
+  width: 70%; height: 60%;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(232,82,10,.18) 0%, transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.about-hero-visual img {
+  width: 100%;
+  max-width: 560px;
+  object-fit: contain;
+  animation: heroImgFloat 6s ease-in-out infinite;
+  position: relative; z-index: 1;
+}
+@keyframes heroImgFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.about-hero-deco {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    radial-gradient(ellipse 55% 60% at 80% 50%, rgba(232,82,10,.10) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 45% at 10% 70%, rgba(30,74,122,.2) 0%, transparent 55%);
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .about-hero-inner { grid-template-columns: 1fr; padding: 110px 0 40px; }
+  .about-hero-visual { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR (same across all pages) -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
+        <div class="nav-dropdown">
+          <a href="about.html#history">Company History</a>
+          <a href="about.html#vision">Our Vision</a>
+          <a href="about.html#strengths">Our Strengths</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span class="nav-plus">+</span></a>
+        <div class="nav-dropdown">
+          <a href="markets.html#markets">Markets We Serve</a>
+          <a href="markets.html#components">Automotive Components</a>
+          <a href="markets.html#oem">OEM Products</a>
+          <a href="markets.html#aftermarket">Aftermarket Products</a>
+          <a href="markets.html#quality">Quality Standards</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
+        <div class="nav-dropdown">
+          <a href="careers.html#why">Why Choose Us</a>
+          <a href="careers.html#benefits">Employee Benefits</a>
+          <a href="careers.html#learning">Learning &amp; Development</a>
+          <a href="careers.html#opportunities">Current Opportunities</a>
+          <a href="careers.html#culture">Company Culture</a>
+        </div>
+      </li>
+      <li class="nav-item"><a class="nav-link" href="contact.html" data-page="contact.html">Contact Us</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
+  <div class="nav-mobile-item">
+    <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
+    <div class="nav-mobile-sub"><a href="about.html#history">Company History</a><a href="about.html#vision">Our Vision</a><a href="about.html#strengths">Our Strengths</a></div>
+  </div>
+  <div class="nav-mobile-item">
+    <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span></div>
+    <div class="nav-mobile-sub"><a href="markets.html#markets">Markets We Serve</a><a href="markets.html#components">Automotive Components</a><a href="markets.html#oem">OEM Products</a></div>
+  </div>
+  <div class="nav-mobile-item">
+    <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
+    <div class="nav-mobile-sub"><a href="careers.html#why">Why Choose Us</a><a href="careers.html#benefits">Benefits</a><a href="careers.html#opportunities">Opportunities</a></div>
+  </div>
+  <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
+  <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="about-page-hero">
+  <div class="about-hero-deco"></div>
+  <div class="container about-hero-inner">
+
+    <!-- Text -->
+    <div class="about-hero-text">
+      <div class="breadcrumb anim-fade" style="color:rgba(255,255,255,.45);">
+        <a href="index.html" style="color:rgba(255,255,255,.45);">Home</a> <span>›</span> <span>About Us</span>
+      </div>
+      <h1 class="anim-up delay-1">Our Story<br>&amp; <span style="color:var(--orange);">Vision</span></h1>
+      <p class="anim-up delay-2">Three decades of precision manufacturing, a culture of continuous improvement, and a relentless drive toward zero-defect excellence.</p>
+      <div class="about-hero-badges anim-up delay-3">
+        <div class="about-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Est. 1993
+        </div>
+        <div class="about-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          3,200+ Employees
+        </div>
+        <div class="about-hero-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          30+ Years Excellence
+        </div>
+      </div>
+    </div>
+
+    <!-- Illustration -->
+    <div class="about-hero-visual anim-fade delay-2">
+      <img src="assets/images/team_illustration.png" alt="AutoVerse Team" />
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT LEAD -->
+<section class="section">
+  <div class="container about-lead-grid">
+    <div class="anim-left">
+      <div class="about-portrait">
+        <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="portraitbg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0B1F3A"/>
+              <stop offset="100%" stop-color="#1A3D5C"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="520" fill="url(#portraitbg)" rx="12"/>
+          <!-- Timeline graphic -->
+          <line x1="60" y1="100" x2="60" y2="420" stroke="#1E4A7A" stroke-width="2"/>
+          <g fill="#E8520A">
+            <circle cx="60" cy="130" r="8"/>
+            <circle cx="60" cy="210" r="8"/>
+            <circle cx="60" cy="290" r="8"/>
+            <circle cx="60" cy="370" r="8"/>
+          </g>
+          <g fill="white" font-family="Barlow Condensed,sans-serif" font-weight="700">
+            <text x="80" y="125" font-size="18" fill="#E8520A">1989</text>
+            <text x="80" y="142" font-size="13" fill="rgba(200,216,232,0.7)">Founded in Pune with 12 employees</text>
+            <text x="80" y="205" font-size="18" fill="#E8520A">2001</text>
+            <text x="80" y="222" font-size="13" fill="rgba(200,216,232,0.7)">ISO 9001 certification achieved</text>
+            <text x="80" y="285" font-size="18" fill="#E8520A">2010</text>
+            <text x="80" y="302" font-size="13" fill="rgba(200,216,232,0.7)">Expanded to 3 plants, 1,000+ employees</text>
+            <text x="80" y="365" font-size="18" fill="#E8520A">2024</text>
+            <text x="80" y="382" font-size="13" fill="rgba(200,216,232,0.7)">2,000+ employees, 50+ countries</text>
+          </g>
+          <text x="240" y="470" text-anchor="middle" fill="rgba(200,216,232,0.3)" font-family="Barlow Condensed,sans-serif" font-size="11" letter-spacing="4" font-weight="700">AUTOVERSE TIMELINE</text>
+        </svg>
+      </div>
+    </div>
+    <div class="about-lead-text anim-up">
+      <div class="section-line"><span>Our Foundation</span></div>
+      <h2 class="section-title">Built on Precision,<br>Driven by Purpose</h2>
+      <p style="color:var(--slate);margin-bottom:16px;">AutoVerse Industries was founded in 1989 by Rajan Mehta with a single CNC machine and a bold vision: to create a world-class automotive components company rooted in Indian engineering talent and global manufacturing standards.</p>
+      <p style="color:var(--slate);margin-bottom:16px;font-weight:300;">From those humble beginnings in a 2,000 sq. ft. workshop in Pimpri-Chinchwad, AutoVerse has grown into a 280,000 sq. ft. multi-plant operation with over 2,000 employees and a presence in 50+ countries.</p>
+      <p style="color:var(--slate);font-weight:300;">Today, led by the second generation of the Mehta family alongside a professional management team, AutoVerse continues to invest in technology, talent, and sustainability to remain at the forefront of the global automotive supply chain.</p>
+      <div class="about-certs anim-up delay-2">
+        <div class="cert-badge">IATF<br><small>16949:2016</small></div>
+        <div class="cert-badge">ISO<br><small>9001:2015</small></div>
+        <div class="cert-badge">ISO<br><small>14001:2015</small></div>
+        <div class="cert-badge">OHSAS<br><small>18001</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-cell anim-fade delay-1"><div class="stat-num"><span data-count="35" data-suffix="+">0</span></div><div class="stat-label">Years in Business</div></div>
+      <div class="stat-cell anim-fade delay-2"><div class="stat-num"><span data-count="2000" data-suffix="+">0</span></div><div class="stat-label">Employees Worldwide</div></div>
+      <div class="stat-cell anim-fade delay-3"><div class="stat-num"><span data-count="280000">0</span></div><div class="stat-label">Sq. Ft. Production Area</div></div>
+      <div class="stat-cell anim-fade delay-4"><div class="stat-num"><span data-count="140" data-suffix="+">0</span></div><div class="stat-label">CNC Machine Centers</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPANDABLE SECTIONS -->
+<section class="section" id="history">
+  <div class="container" style="max-width:860px;">
+    <div class="section-line"><span>Learn More</span></div>
+    <h2 class="section-title anim-up" style="margin-bottom:40px;">Explore AutoVerse</h2>
+
+    <div class="expand-group">
+
+      <div class="expand-item" id="history">
+        <div class="expand-header">
+          <h3>Company History</h3>
+          <div class="expand-icon">+</div>
+        </div>
+        <div class="expand-body">
+          <div class="expand-inner">
+            <p>AutoVerse Industries Pvt. Ltd. was incorporated on April 12, 1989, by Rajan Mehta—a mechanical engineering graduate from IIT Bombay—with a mission to manufacture precision automotive components that could meet the stringent demands of India's emerging passenger vehicle industry.</p>
+            <p>The company's first customer was Tata Motors, supplying machined engine brackets and cover plates for the Tata 407 commercial vehicle. Within five years, the client roster expanded to include Bajaj Auto, Mahindra &amp; Mahindra, and Maruti Suzuki.</p>
+            <p>The 1990s were a transformative decade. AutoVerse invested heavily in CNC machining technology from Mazak and DMG Mori, allowing it to compete on quality with global Tier-1 suppliers. The company achieved ISO 9001 certification in 2001—one of the earliest automotive component manufacturers in Maharashtra to do so.</p>
+            <p>The 2000s brought international expansion. AutoVerse established supply relationships with Volkswagen Group and Ford India, requiring compliance with VDA 6.3 process audits and PPAP documentation standards. A second plant was commissioned in Chennai in 2007 to serve the rapidly growing South Indian automotive corridor.</p>
+            <p>By 2015, AutoVerse had achieved IATF 16949:2016 certification and was exporting components to tier-2 suppliers in Germany, the United Kingdom, and Japan. The company's third facility—a dedicated casting and finishing plant in Manesar, Haryana—opened in 2019 to serve the NCR automotive cluster.</p>
+            <p>Today, under the leadership of Arjun Mehta (Managing Director) and a board of professional directors, AutoVerse continues its journey toward Industry 4.0—implementing IoT-connected machine monitoring, real-time SPC, and AI-based vision inspection across all three plants.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-item" id="vision">
+        <div class="expand-header">
+          <h3>Vision &amp; Mission</h3>
+          <div class="expand-icon">+</div>
+        </div>
+        <div class="expand-body">
+          <div class="expand-inner">
+            <p><strong style="color:var(--navy);">Our Vision:</strong> To be the most trusted precision manufacturing partner for global automotive OEMs—recognized for our engineering excellence, quality commitment, and sustainable manufacturing practices.</p>
+            <p><strong style="color:var(--navy);">Our Mission:</strong> To manufacture world-class automotive components that enable our customers to build safer, more efficient, and more reliable vehicles—while fostering a culture of innovation, continuous improvement, and employee well-being.</p>
+            <p><strong style="color:var(--navy);">Our Values:</strong></p>
+            <ul>
+              <li>Precision — Every micron matters. We never compromise on dimensional accuracy or surface quality.</li>
+              <li>Integrity — We are transparent with our customers, employees, and partners in all that we do.</li>
+              <li>Innovation — We actively invest in new processes, technologies, and materials to stay ahead.</li>
+              <li>Sustainability — We measure our success not only in profit but in our environmental and social impact.</li>
+              <li>People First — Our 2,000+ employees are our greatest asset. We invest in their growth and safety every day.</li>
+              <li>Customer Focus — We exist to help our customers succeed. Their success drives every decision we make.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="expand-item" id="strengths">
+        <div class="expand-header">
+          <h3>Our Strengths</h3>
+          <div class="expand-icon">+</div>
+        </div>
+        <div class="expand-body">
+          <div class="expand-inner">
+            <p>AutoVerse's competitive edge is built on five core strengths that our customers consistently cite as the reasons they remain with us through product generations and market cycles:</p>
+            <ul>
+              <li>Advanced 5-axis CNC machining with ±0.005mm capability</li>
+              <li>In-house tooling design &amp; manufacture for faster lead times</li>
+              <li>140+ Mazak, DMG Mori, and Okuma machining centers</li>
+              <li>Real-time SPC with automated out-of-tolerance alerts</li>
+              <li>Zeiss CMM and optical inspection on 100% of critical features</li>
+              <li>IATF 16949, ISO 9001, ISO 14001, and OHSAS 18001 certified</li>
+              <li>3 strategically located plants across India</li>
+              <li>JIT delivery with 98.7% on-time record over 5 years</li>
+              <li>120-person dedicated R&amp;D and application engineering team</li>
+              <li>Customer portal for real-time order tracking and quality records</li>
+              <li>Renewable energy powering 40% of total facility consumption</li>
+              <li>Zero liquid discharge at all three manufacturing sites</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section leadership-section">
+  <div class="container">
+    <div class="section-line"><span>Leadership</span></div>
+    <h2 class="section-title anim-up">Management Team</h2>
+    <p class="section-sub anim-up delay-1">Experienced industry leaders guiding AutoVerse's continued growth and innovation.</p>
+    <div class="leadership-grid">
+      <div class="leader-card anim-up delay-1">
+        <div class="leader-avatar" style="background:linear-gradient(135deg,#0B1F3A,#1A4A7A);">
+          <span>AM</span>
+        </div>
+        <h4>Arjun Mehta</h4>
+        <div class="leader-title">Managing Director</div>
+        <p>IIM Ahmedabad MBA. 18 years leading AutoVerse's strategic expansion across South and Southeast Asia.</p>
+      </div>
+      <div class="leader-card anim-up delay-2">
+        <div class="leader-avatar" style="background:linear-gradient(135deg,#1A3D5C,#2A6A9A);">
+          <span>PR</span>
+        </div>
+        <h4>Priya Rao</h4>
+        <div class="leader-title">Chief Operations Officer</div>
+        <p>15+ years in automotive operations. Former VP at Motherson Group. Expert in lean manufacturing and Industry 4.0.</p>
+      </div>
+      <div class="leader-card anim-up delay-3">
+        <div class="leader-avatar" style="background:linear-gradient(135deg,#E8520A,#FF8A5C);">
+          <span>VK</span>
+        </div>
+        <h4>Vikram Kulkarni</h4>
+        <div class="leader-title">Chief Technical Officer</div>
+        <p>PhD Mechanical Engineering, IIT Pune. Holds 12 patents in precision manufacturing processes and tooling design.</p>
+      </div>
+      <div class="leader-card anim-up delay-4">
+        <div class="leader-avatar" style="background:linear-gradient(135deg,#132d56,#0B1F3A);">
+          <span>SJ</span>
+        </div>
+        <h4>Sunita Joshi</h4>
+        <div class="leader-title">Chief Financial Officer</div>
+        <p>CA and CPA with 20 years in manufacturing finance. Architected AutoVerse's international treasury and FX strategy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-bg"></div>
+  <div class="container cta-inner">
+    <div class="cta-text anim-up">
+      <span class="tag">Work With Us</span>
+      <h2>Ready to Partner with AutoVerse?</h2>
+      <p>Explore our products or reach out to our engineering team for a technical consultation.</p>
+    </div>
+    <div class="cta-actions anim-up delay-2">
+      <a href="contact.html" class="btn btn-primary">Contact Us</a>
+      <a href="markets.html" class="btn btn-outline">View Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>Auto<span>Verse</span></a>
+        <p>Precision-engineered automotive components for the world's leading vehicle manufacturers. Built to last, delivered on time.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" class="social-btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
+          <a href="#" class="social-btn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="about.html#history">Our History</a></li><li><a href="about.html#vision">Vision &amp; Mission</a></li><li><a href="about.html#strengths">Our Strengths</a></li></ul></div>
+      <div class="footer-col"><h5>Products</h5><ul><li><a href="markets.html#components">Engine Components</a></li><li><a href="markets.html#oem">OEM Products</a></li><li><a href="markets.html#aftermarket">Aftermarket Parts</a></li><li><a href="markets.html#quality">Quality Standards</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plot 14, MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>+91 20 2712 4800</span></div>
+        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>info@autoverse.in</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
+      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
