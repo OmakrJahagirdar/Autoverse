@@ -1,383 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Careers — AutoVerse Industries</title>
-<meta name="description" content="Join AutoVerse — a growing team of 2,000+ engineers, technicians, and professionals building the future of automotive manufacturing."/>
-<link rel="stylesheet" href="assets/css/style.css"/>
-<link rel="stylesheet" href="assets/css/inner.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Careers — AutoVerse Industries</title>
+  <meta name="description"
+    content="Join AutoVerse — a growing team of 2,000+ engineers, technicians, and professionals building the future of automotive manufacturing." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/inner.css" />
+  <style>
+    /* ── Careers Hero ── */
+    .careers-page-hero {
+      position: relative;
+      min-height: 520px;
+      background: linear-gradient(135deg, #060f1e 0%, #0B1F3A 50%, #112a4a 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .careers-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/team_illustration.png');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.15;
+    }
+
+    .careers-hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 120px 0 60px;
+    }
+
+    .careers-hero-inner h1 {
+      color: white;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      margin-bottom: 18px;
+    }
+
+    .careers-hero-inner>p {
+      color: rgba(255, 255, 255, .55);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* ── Life Gallery ── */
+    .life-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      height: 300px;
+    }
+
+    .life-gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+    }
+
+    .life-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .life-gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .life-gallery-item:first-child {
+      grid-column: span 1;
+    }
+
+    .life-gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(6, 15, 30, .8));
+      padding: 16px 14px 12px;
+      color: white;
+      font-family: var(--ff-display);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Benefits with icons ── */
+    .benefits-icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .benefit-icon-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px 22px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .benefit-icon-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--orange);
+    }
+
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(232, 82, 10, .08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--orange);
+      transition: var(--transition);
+    }
+
+    .benefit-icon-card:hover .benefit-icon {
+      background: var(--orange);
+      color: white;
+    }
+
+    .benefit-icon svg {
+      width: 26px;
+      height: 26px;
+    }
+
+    .benefit-icon-card h5 {
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .benefit-icon-card p {
+      font-size: .85rem;
+      color: var(--slate);
+      font-weight: 300;
+    }
+
+    /* ── Job Cards enhanced ── */
+    .job-card-enhanced {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+      margin-bottom: 16px;
+    }
+
+    .job-card-enhanced:hover {
+      border-color: var(--orange);
+      box-shadow: var(--shadow-md);
+    }
+
+    .job-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .job-card-header h5 {
+      color: var(--navy);
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+
+    .job-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .job-tag {
+      font-family: var(--ff-ui);
+      font-size: .7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding: 4px 10px;
+      border-radius: 40px;
+      background: var(--offwhite);
+      color: var(--slate);
+    }
+
+    .job-tag.orange {
+      background: rgba(232, 82, 10, .1);
+      color: var(--orange);
+    }
+
+    .job-card-enhanced p {
+      color: var(--slate);
+      font-size: .9rem;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .job-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .job-dept {
+      font-family: var(--ff-ui);
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--slate);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Values strip ── */
+    .culture-values {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .culture-value {
+      padding: 32px 24px;
+      text-align: center;
+      border-right: 1px solid var(--gray-200);
+      transition: var(--transition);
+    }
+
+    .culture-value:last-child {
+      border-right: none;
+    }
+
+    .culture-value:hover {
+      background: var(--navy);
+    }
+
+    .culture-value:hover h5,
+    .culture-value:hover p {
+      color: white;
+    }
+
+    .culture-value:hover .cv-icon {
+      background: var(--orange);
+      color: white;
+    }
+
+    .cv-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(232, 82, 10, .08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      margin: 0 auto 14px;
+      transition: var(--transition);
+    }
+
+    .cv-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .culture-value h5 {
+      color: var(--navy);
+      margin-bottom: 6px;
+      transition: var(--transition);
+    }
+
+    .culture-value p {
+      font-size: .82rem;
+      color: var(--slate);
+      font-weight: 300;
+      transition: var(--transition);
+    }
+
+    @media(max-width:1024px) {
+      .benefits-icon-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .culture-values {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .culture-value {
+        border-right: none;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .careers-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width:640px) {
+      .life-gallery {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .life-gallery-item {
+        height: 180px;
+      }
+
+      .benefits-icon-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .culture-values {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══ NAVBAR ══════════════════════════════════════════ -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
-    </a>
-    <ul class="nav-links">
-      <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="about.html#history">Company History</a>
-          <a href="about.html#vision">Our Vision</a>
-          <a href="about.html#strengths">Our Strengths</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="markets.html#markets">Markets We Serve</a>
-          <a href="markets.html#components">Automotive Components</a>
-          <a href="markets.html#oem">OEM Products</a>
-          <a href="markets.html#aftermarket">Aftermarket Products</a>
-          <a href="markets.html#quality">Quality Standards</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="careers.html#why">Why Choose Us</a>
-          <a href="careers.html#benefits">Employee Benefits</a>
-          <a href="careers.html#learning">Learning &amp; Development</a>
-          <a href="careers.html#opportunities">Current Opportunities</a>
-          <a href="careers.html#culture">Company Culture</a>
-        </div>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="contact.html" data-page="contact.html">Contact Us</a></li>
-    </ul>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </div>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
+      </a>
+      <ul class="nav-links">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="about.html#history">Company History</a>
+            <a href="about.html#vision">Our Vision</a>
+            <a href="about.html#strengths">Our Strengths</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span
+              class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="markets.html#markets">Markets We Serve</a>
+            <a href="markets.html#components">Automotive Components</a>
+            <a href="markets.html#oem">OEM Products</a>
+            <a href="markets.html#aftermarket">Aftermarket Products</a>
+            <a href="markets.html#quality">Quality Standards</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="careers.html" data-page="careers.html">Careers <span
+              class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="#why">Why AutoVerse</a>
+            <a href="#benefits">Employee Benefits</a>
+            <a href="#opportunities">Current Openings</a>
+            <a href="#culture">Company Culture</a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html" data-page="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary"
+          style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
 
-<!-- Mobile Nav -->
-<div class="nav-mobile" id="navMobile">
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="about.html#history">Company History</a><a href="about.html#vision">Our Vision</a><a href="about.html#strengths">Our Strengths</a></div>
+  <div class="nav-mobile" id="navMobile">
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="about.html#history">History</a><a href="about.html#vision">Vision</a></div>
+    </div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span>
+      </div>
+      <div class="nav-mobile-sub"><a href="markets.html#markets">Markets</a><a
+          href="markets.html#components">Components</a></div>
+    </div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="#benefits">Benefits</a><a href="#opportunities">Openings</a><a
+          href="#culture">Culture</a></div>
+    </div>
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
   </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="markets.html#markets">Markets We Serve</a><a href="markets.html#components">Automotive Components</a><a href="markets.html#oem">OEM Products</a><a href="markets.html#aftermarket">Aftermarket Products</a></div>
-  </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="careers.html#why">Why Choose Us</a><a href="careers.html#benefits">Benefits</a><a href="careers.html#opportunities">Opportunities</a></div>
-  </div>
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
-  <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
-</div>
 
-<!-- PAGE HERO -->
-<div class="page-hero" style="background:var(--navy);">
-  <div class="page-hero-bg" style="background:linear-gradient(135deg,#0B1F3A 0%,#0D2A48 60%,#1A3A5C 100%);"></div>
-  <div class="page-hero-overlay"></div>
-  <!-- Decorative people/net SVG -->
-  <div style="position:absolute;right:-20px;top:0;bottom:0;opacity:.04;pointer-events:none;overflow:hidden;">
-    <svg viewBox="0 0 600 420" width="600" height="420" fill="none" stroke="white" stroke-width="1">
-      <circle cx="100" cy="80" r="30"/><circle cx="250" cy="60" r="30"/><circle cx="400" cy="90" r="30"/>
-      <circle cx="550" cy="70" r="30"/><circle cx="170" cy="220" r="30"/><circle cx="320" cy="200" r="30"/>
-      <circle cx="470" cy="230" r="30"/><circle cx="80" cy="340" r="30"/><circle cx="240" cy="360" r="30"/>
-      <circle cx="400" cy="340" r="30"/><circle cx="560" cy="350" r="30"/>
-      <line x1="100" y1="80" x2="250" y2="60"/><line x1="250" y1="60" x2="400" y2="90"/><line x1="400" y1="90" x2="550" y2="70"/>
-      <line x1="100" y1="80" x2="170" y2="220"/><line x1="250" y1="60" x2="170" y2="220"/><line x1="250" y1="60" x2="320" y2="200"/>
-      <line x1="400" y1="90" x2="320" y2="200"/><line x1="400" y1="90" x2="470" y2="230"/><line x1="550" y1="70" x2="470" y2="230"/>
-      <line x1="170" y1="220" x2="80" y2="340"/><line x1="170" y1="220" x2="240" y2="360"/><line x1="320" y1="200" x2="240" y2="360"/>
-      <line x1="320" y1="200" x2="400" y2="340"/><line x1="470" y1="230" x2="400" y2="340"/><line x1="470" y1="230" x2="560" y2="350"/>
-    </svg>
-  </div>
-  <div class="container page-hero-content">
-    <div class="breadcrumb anim-fade"><a href="index.html">Home</a> <span>›</span> <span>Careers</span></div>
-    <h1 class="anim-up delay-1">Shape the Future<br>of Mobility</h1>
-    <p class="anim-up delay-2">Join 2,000+ engineers, technicians, and professionals building world-class automotive components at AutoVerse.</p>
-    <div class="careers-hero-stats anim-up delay-3">
-      <div class="careers-stat">
-        <div class="careers-stat-num" data-count="2000" data-suffix="+">0</div>
-        <div class="careers-stat-label">Employees Worldwide</div>
-      </div>
-      <div class="careers-stat">
-        <div class="careers-stat-num" data-count="35" data-suffix="%">0</div>
-        <div class="careers-stat-label">Internal Promotion Rate</div>
-      </div>
-      <div class="careers-stat">
-        <div class="careers-stat-num" data-count="4.2" data-suffix="/5">0</div>
-        <div class="careers-stat-label">Glassdoor Rating</div>
+  <!-- HERO -->
+  <section class="careers-page-hero">
+    <div class="careers-hero-bg"></div>
+    <div class="container">
+      <div class="careers-hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" style="color:rgba(255,255,255,.4);font-size:.82rem;">Home</a>
+          <span style="color:rgba(255,255,255,.25);margin:0 8px;font-size:.82rem;">/</span>
+          <span style="color:var(--orange);font-size:.82rem;">Careers</span>
+        </nav>
+        <h1>Shape the Future<br><em style="color:var(--orange);font-style:normal;">of Mobility</em></h1>
+        <p>Join a team of 2,000+ engineers and professionals building world-class automotive components that move the
+          world forward.</p>
+        <div class="careers-hero-stats">
+          <div class="careers-stat">
+            <div class="careers-stat-num" data-count="2000" data-suffix="+">0</div>
+            <div class="careers-stat-label">Team Members</div>
+          </div>
+          <div class="careers-stat">
+            <div class="careers-stat-num" data-count="120" data-suffix="+">0</div>
+            <div class="careers-stat-label">R&amp;D Engineers</div>
+          </div>
+          <div class="careers-stat">
+            <div class="careers-stat-num" data-count="12" data-suffix="">0</div>
+            <div class="careers-stat-label">Open Positions</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- EXPANDABLE SECTIONS -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div class="section-line"><span>Life at AutoVerse</span></div>
-    <h2 class="section-title anim-up">Everything You Need to Know</h2>
-    <p class="section-sub anim-up delay-1">Explore what makes AutoVerse a workplace where careers flourish alongside great engineering.</p>
-
-    <div class="expand-group anim-up delay-2">
-
-      <div class="expand-item" id="why">
-        <div class="expand-header">
-          <h3>Why Choose Us</h3>
-          <div class="expand-icon">+</div>
+  <!-- LIFE AT AUTOVERSE -->
+  <section class="section" id="culture">
+    <div class="container">
+      <div class="section-line"><span>Life at AutoVerse</span></div>
+      <h2 class="section-title anim-up">Our People &amp; Culture</h2>
+      <p class="section-sub anim-up delay-1">A collaborative, innovative environment where every team member's
+        contribution matters.</p>
+      <div class="life-gallery anim-fade delay-2">
+        <div class="life-gallery-item">
+          <img src="assets/images/team_illustration.png"
+            alt="Our diverse team" />
+          <div class="life-gallery-overlay">Our Team</div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>AutoVerse is more than just a job — it is a career platform designed for forward-thinking engineering minds. We are India's fastest-growing Tier 1 automotive supplier, consistently adding new production capabilities and expanding into premium international EV and hybrid markets. Working here puts you at the absolute frontier of manufacturing technology, where you will operate state-of-the-art multi-axis CNC machines, advanced collaborative robotics (cobots), and real-time Industry 4.0 IoT analytics systems.</p>
-            <ul>
-              <li><strong>Global Scale:</strong> Work on critical components going into passenger electric vehicles, luxury sedans, and heavy transport fleets sold in 50+ countries.</li>
-              <li><strong>Direct Client Interface:</strong> Get direct engineering exposure by collaborating directly with Tier-1 international OEM design teams.</li>
-              <li><strong>State-of-the-Art Design Stack:</strong> Utilize premium modeling, simulation, and FEA tools (CATIA, ANSYS, Siemens NX) in our advanced R&amp;D Innovation Labs.</li>
-              <li><strong>Structured Career Progression:</strong> Advance through a transparent grading structure with twice-yearly skill audits and clear pathing criteria.</li>
-              <li><strong>Market-Leading Compensation:</strong> Receive highly competitive salaries benchmarked against the top-quartile of the automotive sector, plus annual performance bonuses.</li>
-              <li><strong>Equity Sharing:</strong> Participate in ESOP programs for key technical leads, engineering specialists, and management roles.</li>
-              <li><strong>Safe & Premium Environment:</strong> Work in clean, air-conditioned, and ergonomically optimized facilities with a 100% commitment to zero-accident safety protocols.</li>
-              <li><strong>Leadership & Strategy:</strong> Connect directly with executive leadership through quarterly town halls and direct mentorship channels.</li>
-              <li><strong>Grassroots Innovation:</strong> Pitch ideas to the AutoVerse Innovation Board — with implemented improvements earning recognition and awards up to ₹50,000.</li>
-            </ul>
-          </div>
+        <div class="life-gallery-item">
+          <img src="assets/images/factory_assembly.png"
+            alt="State of the art facility" />
+          <div class="life-gallery-overlay">Our Facilities</div>
+        </div>
+        <div class="life-gallery-item">
+          <img src="assets/images/quality_control.png"
+            alt="Innovation Lab" />
+          <div class="life-gallery-overlay">Innovation Lab</div>
         </div>
       </div>
 
-      <div class="expand-item" id="benefits">
-        <div class="expand-header">
-          <h3>Employee Benefits</h3>
-          <div class="expand-icon">+</div>
+      <div class="culture-values anim-up delay-3" style="margin-top:48px;">
+        <div class="culture-value">
+          <div class="cv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87" />
+              <path d="M16 3.13a4 4 0 010 7.75" />
+            </svg></div>
+          <h5>Collaboration</h5>
+          <p>Cross-functional teams working toward shared excellence</p>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>We believe that competitive benefits are the foundation of employee retention and well-being. AutoVerse's benefits package is benchmarked annually against the top-quartile of automotive suppliers in India.</p>
-            <ul>
-              <li>Mediclaim policy — ₹5 lakh family floater, zero co-pay at network hospitals</li>
-              <li>Term life insurance — 5× annual CTC for all permanent employees</li>
-              <li>Personal accident cover — ₹10 lakh per employee</li>
-              <li>Provident Fund — 12% employer contribution beyond statutory</li>
-              <li>Gratuity — full statutory entitlement, funded through approved trust</li>
-              <li>Subsidised meals at all plant and office canteens</li>
-              <li>Company transport from 14 pick-up points across Pune, Chennai, Manesar</li>
-              <li>15 days earned leave + 12 casual/sick days + 12 paid public holidays</li>
-              <li>Maternity leave — 26 weeks fully paid; paternity leave — 10 days</li>
-              <li>Creche facility and childcare allowance at Pune headquarters</li>
-            </ul>
-          </div>
+        <div class="culture-value">
+          <div class="cv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg></div>
+          <h5>Innovation</h5>
+          <p>Continuous improvement culture and R&amp;D investment</p>
         </div>
-      </div>
-
-      <div class="expand-item" id="learning">
-        <div class="expand-header">
-          <h3>Learning &amp; Development</h3>
-          <div class="expand-icon">+</div>
+        <div class="culture-value">
+          <div class="cv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg></div>
+          <h5>Growth</h5>
+          <p>Structured learning paths and career development</p>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>AutoVerse invests ₹2,200 per employee per year in training — more than 3× the automotive industry average. Our AutoVerse Academy is a dedicated learning function with full-time L&amp;D professionals who design, source, and deliver programmes across technical, functional, and leadership tracks.</p>
-            <ul>
-              <li>AutoVerse Academy — online + in-person learning platform with 400+ modules</li>
-              <li>GD&amp;T and APQP certification programmes (AIAG-approved curriculum)</li>
-              <li>Six Sigma Green Belt sponsorship for production engineers</li>
-              <li>Annual deputation to SIAM, CII, and ACMA industry conferences</li>
-              <li>Mentoring programme — every new hire assigned a senior buddy for 6 months</li>
-              <li>Management fast-track for high-potential performers (top 10% cohort)</li>
-              <li>International exchange — 3-month secondments to customer plants in Europe/Japan</li>
-              <li>MBA sponsorship for mid-career professionals (part-time/weekend programmes)</li>
-              <li>Tuition reimbursement for job-relevant courses up to ₹40,000/year</li>
-            </ul>
-          </div>
+        <div class="culture-value">
+          <div class="cv-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+            </svg></div>
+          <h5>Wellbeing</h5>
+          <p>Comprehensive health, safety, and wellness programs</p>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="expand-item" id="opportunities">
-        <div class="expand-header">
-          <h3>Current Opportunities</h3>
-          <div class="expand-icon">+</div>
+  <!-- WHY JOIN AUTOVERSE -->
+  <section class="section" style="background:var(--offwhite);" id="why">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+        <div>
+          <div class="section-line"><span>Why Join Us</span></div>
+          <h2 class="section-title anim-up">Build Your Career Here</h2>
+          <p class="anim-up delay-1" style="color:var(--slate);font-weight:300;margin-bottom:32px;line-height:1.8;">
+            AutoVerse offers more than a job — a career built on real engineering challenges, world-class training, and
+            a team that celebrates your growth.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:16px;" class="anim-up delay-2">
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:10px;height:10px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div>
+              <span style="color:var(--navy);font-weight:500;">Work on components for 200+ global OEM brands</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:10px;height:10px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div>
+              <span style="color:var(--navy);font-weight:500;">Access to state-of-the-art CNC, automation, and EV
+                labs</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:10px;height:10px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div>
+              <span style="color:var(--navy);font-weight:500;">Structured mentoring and leadership development
+                programs</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:14px;">
+              <div style="width:10px;height:10px;background:var(--orange);border-radius:50%;flex-shrink:0;"></div>
+              <span style="color:var(--navy);font-weight:500;">International exposure through global client
+                projects</span>
+            </div>
+          </div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>We are currently hiring across engineering, quality, operations, and corporate functions. All roles are open at our Pune, Chennai, and Manesar facilities unless stated otherwise.</p>
+        <div class="anim-left">
+          <img src="assets/images/team_illustration.png"
+            alt="AutoVerse Team at Work"
+            style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);" />
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <div class="job-cards" style="margin-top:20px;">
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>Senior Manufacturing Engineer — CNC Machining</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Full-Time</span>
-                    <span class="job-tag">Pune</span>
-                    <span class="job-tag">6–10 Yrs Exp</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
-              </div>
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>Quality Engineer — PPAP &amp; Customer Quality</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Full-Time</span>
-                    <span class="job-tag">Chennai</span>
-                    <span class="job-tag">3–6 Yrs Exp</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
-              </div>
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>Production Supervisor — Stamping Line</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Full-Time</span>
-                    <span class="job-tag">Chennai</span>
-                    <span class="job-tag">4–8 Yrs Exp</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
-              </div>
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>R&amp;D Engineer — EV Thermal Management</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Full-Time</span>
-                    <span class="job-tag">Pune</span>
-                    <span class="job-tag">2–5 Yrs Exp</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
-              </div>
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>Finance Business Partner — Manufacturing</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Full-Time</span>
-                    <span class="job-tag">Pune HQ</span>
-                    <span class="job-tag">5–8 Yrs Exp</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
-              </div>
-              <div class="job-card">
-                <div class="job-info">
-                  <h5>ITI Apprentice — Machining &amp; Fitting (Batch 2025)</h5>
-                  <div class="job-meta">
-                    <span class="job-tag orange">Apprenticeship</span>
-                    <span class="job-tag">All Plants</span>
-                    <span class="job-tag">Freshers Welcome</span>
-                  </div>
-                </div>
-                <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;">Apply Now</a>
+  <!-- BENEFITS -->
+  <section class="section" id="benefits">
+    <div class="container">
+      <div class="section-line"><span>What We Offer</span></div>
+      <h2 class="section-title anim-up">Employee Benefits</h2>
+      <p class="section-sub anim-up delay-1">Comprehensive benefits designed to support your health, growth, and
+        financial security.</p>
+      <div class="benefits-icon-grid">
+        <div class="benefit-icon-card anim-up delay-1">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+            </svg></div>
+          <h5>Health Insurance</h5>
+          <p>Comprehensive medical, dental, and vision coverage for you and your family.</p>
+        </div>
+        <div class="benefit-icon-card anim-up delay-2">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+              <path d="M6 12v5c3 3 9 3 12 0v-5" />
+            </svg></div>
+          <h5>Learning &amp; Development</h5>
+          <p>Annual training budget, certification support, and access to global technical workshops.</p>
+        </div>
+        <div class="benefit-icon-card anim-up delay-3">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg></div>
+          <h5>Flexible Work</h5>
+          <p>Hybrid arrangements for office roles and flexible shift options for production teams.</p>
+        </div>
+        <div class="benefit-icon-card anim-up delay-2">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+            </svg></div>
+          <h5>Performance Bonuses</h5>
+          <p>Quarterly and annual performance incentives linked to individual and team achievements.</p>
+        </div>
+        <div class="benefit-icon-card anim-up delay-3">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+              <polyline points="9 22 9 12 15 12 15 22" />
+            </svg></div>
+          <h5>Provident Fund</h5>
+          <p>Company-matched PF contributions and gratuity plan for long-term financial security.</p>
+        </div>
+        <div class="benefit-icon-card anim-up delay-4">
+          <div class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg></div>
+          <h5>Internship Program</h5>
+          <p>Structured 6-month internships for engineering graduates with pre-placement offer opportunities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENT OPENINGS -->
+  <section class="section" style="background:var(--offwhite);" id="opportunities">
+    <div class="container">
+      <div class="section-line"><span>Join Us</span></div>
+      <h2 class="section-title anim-up">Current Openings</h2>
+      <p class="section-sub anim-up delay-1">Find your role at AutoVerse. We're hiring across engineering,
+        manufacturing, and business functions.</p>
+
+      <div class="anim-up delay-2">
+        <div class="job-card-enhanced">
+          <div class="job-card-header">
+            <div>
+              <h5>Senior CNC Programmer</h5>
+              <div class="job-meta">
+                <span class="job-tag orange">Full-Time</span>
+                <span class="job-tag">Pune</span>
+                <span class="job-tag">Engineering</span>
               </div>
             </div>
+            <a href="contact.html" class="btn btn-primary"
+              style="padding:10px 20px;font-size:.82rem;flex-shrink:0;">Apply Now</a>
+          </div>
+          <p>Develop and optimize CNC programs for 5-axis machining centers. 5+ years experience with Fanuc/Siemens
+            controls required.</p>
+          <div class="job-card-footer">
+            <span class="job-dept">Manufacturing · 5+ Years Experience</span>
+          </div>
+        </div>
 
-            <p style="margin-top:24px;font-size:.9rem;">Don't see a role that fits? Send your CV to <strong style="color:var(--navy);">careers@autoverse.in</strong> and we'll reach out when the right position opens.</p>
+        <div class="job-card-enhanced">
+          <div class="job-card-header">
+            <div>
+              <h5>Quality Engineer — APQP</h5>
+              <div class="job-meta">
+                <span class="job-tag orange">Full-Time</span>
+                <span class="job-tag">Pune</span>
+                <span class="job-tag">Quality</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary"
+              style="padding:10px 20px;font-size:.82rem;flex-shrink:0;">Apply Now</a>
+          </div>
+          <p>Lead APQP and PPAP processes for new product introductions. IATF 16949 internal auditor certification
+            preferred.</p>
+          <div class="job-card-footer">
+            <span class="job-dept">Quality · 3–6 Years Experience</span>
+          </div>
+        </div>
+
+        <div class="job-card-enhanced">
+          <div class="job-card-header">
+            <div>
+              <h5>R&amp;D Engineer — EV Components</h5>
+              <div class="job-meta">
+                <span class="job-tag orange">Full-Time</span>
+                <span class="job-tag">Pune</span>
+                <span class="job-tag">R&amp;D</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary"
+              style="padding:10px 20px;font-size:.82rem;flex-shrink:0;">Apply Now</a>
+          </div>
+          <p>Design and develop precision components for EV platforms. Experience in lightweight materials and EV
+            powertrain a plus.</p>
+          <div class="job-card-footer">
+            <span class="job-dept">Research &amp; Development · 2–5 Years</span>
+          </div>
+        </div>
+
+        <div class="job-card-enhanced">
+          <div class="job-card-header">
+            <div>
+              <h5>Production Supervisor</h5>
+              <div class="job-meta">
+                <span class="job-tag orange">Full-Time</span>
+                <span class="job-tag">Chennai</span>
+                <span class="job-tag">Operations</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-primary"
+              style="padding:10px 20px;font-size:.82rem;flex-shrink:0;">Apply Now</a>
+          </div>
+          <p>Oversee day-to-day stamping operations at Plant 2 Chennai. Lead a team of 40+ operators with focus on
+            safety and OEE.</p>
+          <div class="job-card-footer">
+            <span class="job-dept">Operations · 4+ Years Experience</span>
+          </div>
+        </div>
+
+        <div class="job-card-enhanced" style="border:2px dashed var(--orange);background:rgba(232,82,10,.02);">
+          <div class="job-card-header">
+            <div>
+              <h5>Graduate Engineering Internship — 2025 Batch</h5>
+              <div class="job-meta">
+                <span class="job-tag orange">Internship</span>
+                <span class="job-tag">Pune / Chennai</span>
+                <span class="job-tag">6 Months</span>
+              </div>
+            </div>
+            <a href="contact.html" class="btn btn-dark" style="padding:10px 20px;font-size:.82rem;flex-shrink:0;">Apply
+              Now</a>
+          </div>
+          <p>Hands-on internship across manufacturing, quality, or R&amp;D for BE/B.Tech graduates. PPO available for
+            top performers.</p>
+          <div class="job-card-footer">
+            <span class="job-dept" style="color:var(--orange);">🎓 Internship Program — Fresh Graduates Welcome</span>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="expand-item" id="culture">
-        <div class="expand-header">
-          <h3>Company Culture</h3>
-          <div class="expand-icon">+</div>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container cta-inner">
+      <div class="cta-text anim-up">
+        <span class="tag">Don't See Your Role?</span>
+        <h2>Send Us Your Resume</h2>
+        <p>We're always looking for talented engineers and professionals. Drop us your CV and we'll be in touch.</p>
+      </div>
+      <div class="cta-actions anim-up delay-2">
+        <a href="contact.html" class="btn btn-primary">Send Your CV</a>
+        <a href="about.html" class="btn btn-outline">Learn About Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+            <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" style="height:38px;" />
+          </a>
+          <p>Precision-engineered automotive components for the world's leading vehicle manufacturers.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="5" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg></a>
+          </div>
+          <div class="footer-certs">
+            <span class="footer-cert-badge">ISO 9001:2015</span>
+            <span class="footer-cert-badge">IATF 16949</span>
+            <span class="footer-cert-badge">ISO 14001</span>
+          </div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>Culture at AutoVerse is built on four values we call the AutoVerse Code: <strong>Precision, Integrity, Innovation, and People First</strong>. These are not slogans on a poster — they are the criteria by which we hire, promote, and recognise our people.</p>
-            <p>Our plants operate under a flat hierarchy compared to industry peers. Every technician on the shopfloor has direct access to the plant manager through our open-door programme. Monthly all-hands meetings at each plant keep everyone aligned on targets, challenges, and wins.</p>
-            <ul>
-              <li>Annual AutoVerse Excellence Awards — 12 categories, 36 winners plant-wide</li>
-              <li>Shopfloor innovation boards — kaizen ideas visible to all, credited to their authors</li>
-              <li>Sports &amp; wellness programme — cricket, football, badminton leagues</li>
-              <li>AutoVerse Cares CSR programme — employees contribute 2 hours/month to community</li>
-              <li>Diversity targets — 30% women in technical roles by 2027</li>
-              <li>Mental wellness helpline (24×7) for all employees and immediate family</li>
-              <li>Quarterly skip-level conversations — every employee meets their +2 annually</li>
-              <li>Pulse survey every 6 months with published action plans within 30 days</li>
-            </ul>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#history">Our History</a></li>
+            <li><a href="about.html#vision">Vision &amp; Mission</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Products</h5>
+          <ul>
+            <li><a href="markets.html#components">Engine Components</a></li>
+            <li><a href="markets.html#oem">OEM Products</a></li>
+            <li><a href="markets.html#aftermarket">Aftermarket Parts</a></li>
+            <li><a href="markets.html#quality">Quality Standards</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>Plot 14, MIDC, Pimpri-Chinchwad,<br>Pune 411019, Maharashtra</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg>
+            <span>+91 20 2712 4800</span>
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- BENEFITS GRID -->
-<section class="section-sm" style="background:var(--offwhite);">
-  <div class="container">
-    <div class="section-line"><span>Highlights</span></div>
-    <h2 class="section-title anim-up">Why 2,000+ People Choose AutoVerse</h2>
-    <div class="benefits-grid" style="margin-top:36px;">
-      <div class="benefit-card anim-up delay-1">
-        <h5>Competitive CTC</h5>
-        <p>Top-quartile compensation benchmarked annually against ACMA and Korn Ferry surveys.</p>
-      </div>
-      <div class="benefit-card anim-up delay-2">
-        <h5>Global Exposure</h5>
-        <p>Work with OEM customers in Germany, Japan, and the US on live production programmes.</p>
-      </div>
-      <div class="benefit-card anim-up delay-3">
-        <h5>Latest Technology</h5>
-        <p>Operate 5-axis Mazak and DMG Mori centres, vision inspection, and robotic assembly cells.</p>
-      </div>
-      <div class="benefit-card anim-up delay-1">
-        <h5>Health &amp; Safety First</h5>
-        <p>Zero-LTI target with ₹50 lakh annual safety investment per plant and monthly safety walks.</p>
-      </div>
-      <div class="benefit-card anim-up delay-2">
-        <h5>Clear Growth Path</h5>
-        <p>Transparent grade structure with published role profiles and promotion timelines.</p>
-      </div>
-      <div class="benefit-card anim-up delay-3">
-        <h5>Inclusive Workplace</h5>
-        <p>Active diversity charter, women-in-manufacturing mentoring, and POSH-compliant processes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-bg"></div>
-  <div class="container cta-inner">
-    <div class="cta-text anim-up">
-      <span class="tag">Join Our Team</span>
-      <h2>Ready to Engineer<br>Your Career at AutoVerse?</h2>
-      <p>Send us your CV or apply to a specific role. Our talent acquisition team will respond within 5 business days.</p>
-    </div>
-    <div class="cta-actions anim-up delay-2">
-      <a href="contact.html" class="btn btn-primary">Apply Now</a>
-      <a href="markets.html" class="btn btn-outline">Explore Our Products</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>Auto<span>Verse</span></a>
-        <p>Precision-engineered automotive components for the world's leading vehicle manufacturers. Built to last, delivered on time.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a>
         </div>
       </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="about.html#history">Our History</a></li><li><a href="about.html#vision">Vision &amp; Mission</a></li><li><a href="about.html#strengths">Our Strengths</a></li></ul></div>
-      <div class="footer-col"><h5>Products</h5><ul><li><a href="markets.html#components">Engine Components</a></li><li><a href="markets.html#oem">OEM Products</a></li><li><a href="markets.html#aftermarket">Aftermarket Parts</a></li><li><a href="markets.html#quality">Quality Standards</a></li><li><a href="careers.html">Careers</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plot 14, MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>+91 20 2712 4800</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>careers@autoverse.in</span></div>
-      </div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
-      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
-    </div>
-  </div>
-</footer>
+  </footer>
 
-<script src="assets/js/main.js"></script>
+  <a href="https://wa.me/912027124800" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.803-4.394 9.806-9.799.002-2.617-1.01-5.078-2.854-6.924C16.379 2.036 13.924 1.02 11.3 1.018c-5.41 0-9.81 4.403-9.813 9.806-.001 1.702.443 3.36 1.287 4.81l-.993 3.626 3.71-.973z" />
+    </svg>
+  </a>
+  <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="assets/js/main.js"></script>
 </body>
+
 </html>

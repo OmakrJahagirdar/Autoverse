@@ -1,903 +1,1418 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Contact Us — AutoVerse Industries</title>
-<meta name="description" content="Get in touch with AutoVerse — request a quote, technical consultation, or visit our manufacturing plants in Pune, Chennai, and Manesar."/>
-<link rel="stylesheet" href="assets/css/style.css"/>
-<link rel="stylesheet" href="assets/css/inner.css"/>
-<style>
-/* ── Contact Page Overrides ───────────────────────── */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact Us — AutoVerse Industries</title>
+  <meta name="description"
+    content="Get in touch with AutoVerse — request a quote, technical consultation, or visit our manufacturing plants in Pune, Chennai, and Manesar." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/inner.css" />
+  <style>
+    /* ── Contact Page Overrides ───────────────────────── */
 
-/* Hero */
-.contact-page-hero {
-  position: relative;
-  min-height: 380px;
-  display: flex; align-items: flex-end;
-  overflow: hidden;
-  background: linear-gradient(135deg, #060f1e 0%, #0B1F3A 45%, #112a4a 100%);
-}
-.contact-page-hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 70% at 70% 50%, rgba(232,82,10,.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 20% 80%, rgba(30,74,122,.25) 0%, transparent 55%);
-  pointer-events: none;
-}
-.contact-hero-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 48px; align-items: center;
-  padding: 120px 0 64px;
-  position: relative; z-index: 1;
-}
-.contact-hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--ff-ui);
-  font-size: .7rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: var(--orange);
-  margin-bottom: 20px;
-}
-.contact-hero-eyebrow::before {
-  content: ''; display: block;
-  width: 28px; height: 2px;
-  background: var(--orange);
-}
-.contact-hero-title {
-  font-family: var(--ff-display);
-  font-size: clamp(2.6rem, 4.5vw, 4rem);
-  font-weight: 800; color: #fff;
-  line-height: 1.05; margin-bottom: 20px;
-  letter-spacing: -.02em;
-}
-.contact-hero-title span { color: var(--orange); }
-.contact-hero-desc {
-  color: rgba(255,255,255,.55);
-  font-size: 1.05rem; font-weight: 300;
-  max-width: 420px; line-height: 1.7;
-}
-.contact-hero-badges {
-  display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap;
-}
-.hero-badge {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 40px;
-  padding: 8px 16px;
-  font-family: var(--ff-ui);
-  font-size: .78rem; color: rgba(255,255,255,.75);
-}
-.hero-badge svg { width: 14px; height: 14px; color: var(--orange); flex-shrink: 0; }
+    /* Hero */
+    .contact-page-hero {
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: linear-gradient(135deg, #060f1e 0%, #0B1F3A 45%, #112a4a 100%);
+    }
 
-/* Hero illustration panel */
-.contact-hero-visual {
-  display: flex; align-items: center; justify-content: center;
-  position: relative;
-}
-.hero-visual-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 20px;
-  padding: 32px;
-  width: 100%; max-width: 340px;
-  backdrop-filter: blur(12px);
-}
-.hero-visual-stat {
-  display: flex; align-items: center; gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-}
-.hero-visual-stat:last-child { border-bottom: none; }
-.hero-stat-icon {
-  width: 42px; height: 42px; flex-shrink: 0;
-  background: rgba(232,82,10,.15);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--orange);
-}
-.hero-stat-icon svg { width: 20px; height: 20px; }
-.hero-stat-label {
-  font-family: var(--ff-ui);
-  font-size: .72rem; color: rgba(255,255,255,.4);
-  text-transform: uppercase; letter-spacing: .1em;
-  margin-bottom: 3px;
-}
-.hero-stat-value {
-  font-family: var(--ff-display);
-  font-size: 1.1rem; font-weight: 700; color: #fff;
-}
+    .contact-hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/factory_assembly.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 0;
+    }
 
-/* Stats strip */
-.contact-stats-strip {
-  background: var(--navy);
-  border-bottom: 2px solid rgba(232,82,10,.3);
-}
-.contact-stats-inner {
-  display: flex; justify-content: space-between;
-  padding: 28px 0; gap: 16px; flex-wrap: wrap;
-}
-.c-stat {
-  display: flex; align-items: center; gap: 16px;
-  padding: 0 24px;
-  border-right: 1px solid rgba(255,255,255,.08);
-  flex: 1; min-width: 160px;
-}
-.c-stat:last-child { border-right: none; }
-.c-stat-icon {
-  width: 46px; height: 46px; flex-shrink: 0;
-  background: rgba(232,82,10,.15);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--orange);
-}
-.c-stat-icon svg { width: 22px; height: 22px; }
-.c-stat-num {
-  font-family: var(--ff-display);
-  font-size: 1.6rem; font-weight: 800;
-  color: #fff; line-height: 1;
-  margin-bottom: 2px;
-}
-.c-stat-label {
-  font-family: var(--ff-ui);
-  font-size: .72rem; color: rgba(255,255,255,.45);
-  text-transform: uppercase; letter-spacing: .1em;
-}
+    .contact-page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 70% 50%, rgba(232, 82, 10, .12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 20% 80%, rgba(30, 74, 122, .25) 0%, transparent 55%);
+      pointer-events: none;
+    }
 
-/* Contact main layout */
-.contact-main {
-  background: var(--offwhite);
-  padding: 80px 0;
-}
-.contact-main-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
-  align-items: start;
-}
+    .contact-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      padding: 120px 0 64px;
+      position: relative;
+      z-index: 1;
+    }
 
-/* Form */
-.contact-form-panel {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 48px;
-  box-shadow: 0 4px 32px rgba(0,0,0,.08);
-  border: 1px solid var(--gray-200);
-}
-.form-panel-header {
-  margin-bottom: 32px;
-}
-.form-panel-eyebrow {
-  font-family: var(--ff-ui);
-  font-size: .68rem; font-weight: 700;
-  letter-spacing: .16em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 8px;
-}
-.form-panel-header h2 {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  color: var(--navy); margin-bottom: 8px;
-}
-.form-panel-header p {
-  color: var(--slate); font-weight: 300; font-size: .95rem;
-}
+    .contact-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-ui);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
 
-/* Floating label inputs */
-.fl-group {
-  position: relative;
-  margin-bottom: 20px;
-}
-.fl-group label {
-  position: absolute;
-  top: 50%; left: 16px;
-  transform: translateY(-50%);
-  font-family: var(--ff-ui);
-  font-size: .88rem; color: var(--gray-400);
-  pointer-events: none;
-  transition: all .2s ease;
-  background: var(--white);
-  padding: 0 4px;
-}
-.fl-group.textarea-group label {
-  top: 16px; transform: none;
-}
-.fl-group input,
-.fl-group select,
-.fl-group textarea {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1.5px solid var(--gray-200);
-  border-radius: 10px;
-  font-family: var(--ff-body);
-  font-size: .95rem;
-  color: var(--text);
-  background: var(--white);
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-  appearance: none;
-}
-.fl-group select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0AEC0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  background-size: 16px;
-  padding-right: 40px;
-}
-.fl-group textarea { resize: vertical; min-height: 120px; }
-.fl-group input:focus,
-.fl-group select:focus,
-.fl-group textarea:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(232,82,10,.08);
-}
-.fl-group input:focus + label,
-.fl-group input:not(:placeholder-shown) + label,
-.fl-group select:focus + label,
-.fl-group select:not([value=""]) + label,
-.fl-group textarea:focus + label,
-.fl-group textarea:not(:placeholder-shown) + label {
-  top: 0; font-size: .72rem;
-  color: var(--orange);
-  transform: translateY(-50%);
-}
-.form-two-col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-}
-.form-submit-btn {
-  width: 100%;
-  padding: 16px;
-  background: var(--orange);
-  color: #fff;
-  border: none; border-radius: 10px;
-  font-family: var(--ff-display);
-  font-size: 1.05rem; font-weight: 700;
-  letter-spacing: .04em; text-transform: uppercase;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
-  transition: background .25s, transform .2s, box-shadow .2s;
-  margin-top: 8px;
-}
-.form-submit-btn:hover {
-  background: var(--orange-light);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(232,82,10,.3);
-}
-.form-submit-btn svg { width: 18px; height: 18px; }
-.form-note {
-  text-align: center;
-  margin-top: 14px;
-  font-family: var(--ff-ui);
-  font-size: .75rem;
-  color: var(--gray-400);
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-}
-.form-note svg { width: 12px; height: 12px; color: var(--orange); }
+    .contact-hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--orange);
+    }
 
-/* Info panel */
-.contact-info-panel { display: flex; flex-direction: column; gap: 16px; }
+    .contact-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2.6rem, 4.5vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.05;
+      margin-bottom: 20px;
+      letter-spacing: -.02em;
+    }
 
-.info-card {
-  background: var(--white);
-  border-radius: 14px;
-  padding: 22px 24px;
-  display: flex; align-items: flex-start; gap: 16px;
-  border: 1.5px solid var(--gray-200);
-  transition: border-color .25s, transform .25s, box-shadow .25s;
-}
-.info-card:hover {
-  border-color: var(--orange);
-  transform: translateX(5px);
-  box-shadow: 0 4px 20px rgba(232,82,10,.08);
-}
-.info-card-icon {
-  width: 48px; height: 48px; flex-shrink: 0;
-  background: linear-gradient(135deg, rgba(232,82,10,.12), rgba(232,82,10,.05));
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--orange);
-  border: 1px solid rgba(232,82,10,.15);
-}
-.info-card-icon svg { width: 22px; height: 22px; }
-.info-card-label {
-  font-family: var(--ff-ui);
-  font-size: .68rem; font-weight: 700;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 4px;
-}
-.info-card h5 { color: var(--navy); font-size: 1rem; margin-bottom: 6px; }
-.info-card p {
-  color: var(--slate); font-size: .88rem;
-  font-weight: 300; line-height: 1.65;
-}
-.info-card a { color: var(--orange); font-weight: 500; }
-.info-card a:hover { text-decoration: underline; }
+    .contact-hero-title span {
+      color: var(--orange);
+    }
 
-/* Hours card */
-.hours-card {
-  background: var(--navy);
-  border-radius: 14px;
-  padding: 24px;
-  color: white;
-}
-.hours-card-title {
-  display: flex; align-items: center; gap: 10px;
-  font-family: var(--ff-display);
-  font-size: 1rem; font-weight: 700; color: #fff;
-  margin-bottom: 16px;
-}
-.hours-card-title svg { width: 18px; height: 18px; color: var(--orange); }
-.hours-row {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-  font-size: .88rem;
-}
-.hours-row:last-child { border-bottom: none; }
-.hours-row span:first-child { color: rgba(255,255,255,.5); font-weight: 300; }
-.hours-row span:last-child { color: #fff; font-weight: 600; font-family: var(--ff-ui); font-size: .82rem; }
-.hours-row .status-open {
-  color: #4ade80; background: rgba(74,222,128,.1);
-  padding: 2px 10px; border-radius: 40px;
-  font-size: .72rem; font-weight: 700; font-family: var(--ff-ui);
-}
-.hours-row .status-closed {
-  color: rgba(255,255,255,.35);
-  background: rgba(255,255,255,.06);
-  padding: 2px 10px; border-radius: 40px;
-  font-size: .72rem; font-weight: 700; font-family: var(--ff-ui);
-}
+    .contact-hero-desc {
+      color: rgba(255, 255, 255, .55);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 420px;
+      line-height: 1.7;
+    }
 
-/* Plants section */
-.plants-section {
-  background: var(--white);
-  padding: 72px 0;
-}
-.plants-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 48px;
-}
-.plant-card {
-  background: var(--offwhite);
-  border-radius: 16px;
-  padding: 28px;
-  border: 1.5px solid var(--gray-200);
-  transition: all .3s;
-  position: relative;
-  overflow: hidden;
-}
-.plant-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--orange);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .3s;
-}
-.plant-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.plant-card:hover::before { transform: scaleX(1); }
-.plant-number {
-  font-family: var(--ff-display);
-  font-size: 3rem; font-weight: 800;
-  color: rgba(11,31,58,.06);
-  line-height: 1; margin-bottom: 12px;
-}
-.plant-tag {
-  font-family: var(--ff-ui);
-  font-size: .68rem; font-weight: 700;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 8px;
-}
-.plant-card h4 { color: var(--navy); margin-bottom: 8px; font-size: 1.1rem; }
-.plant-card p { color: var(--slate); font-size: .88rem; font-weight: 300; line-height: 1.6; }
-.plant-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-top: 16px;
-  font-family: var(--ff-ui);
-  font-size: .8rem; font-weight: 600;
-  color: var(--orange);
-  transition: gap .2s;
-}
-.plant-link:hover { gap: 10px; }
-.plant-link svg { width: 14px; height: 14px; }
+    .contact-hero-badges {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
 
-/* Map */
-.map-section {
-  background: var(--offwhite);
-  padding: 72px 0;
-}
-.map-container {
-  margin-top: 40px;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,.12);
-  border: 1px solid var(--gray-200);
-  height: 440px;
-}
-.map-container iframe { width: 100%; height: 100%; border: 0; display: block; }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 40px;
+      padding: 8px 16px;
+      font-family: var(--ff-ui);
+      font-size: .78rem;
+      color: rgba(255, 255, 255, .75);
+    }
 
-/* Success message */
-.form-success {
-  display: none;
-  background: linear-gradient(135deg, rgba(74,222,128,.1), rgba(74,222,128,.05));
-  border: 1.5px solid rgba(74,222,128,.3);
-  border-radius: 12px;
-  padding: 24px;
-  text-align: center;
-  margin-top: 16px;
-}
-.form-success svg { width: 40px; height: 40px; color: #4ade80; margin: 0 auto 12px; }
-.form-success h4 { color: var(--navy); margin-bottom: 6px; }
-.form-success p { color: var(--slate); font-size: .9rem; font-weight: 300; }
+    .hero-badge svg {
+      width: 14px;
+      height: 14px;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .contact-hero-grid { grid-template-columns: 1fr; }
-  .contact-hero-visual { display: none; }
-  .contact-main-grid { grid-template-columns: 1fr; }
-  .plants-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .contact-stats-inner { flex-direction: column; gap: 0; }
-  .c-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); padding: 16px 0; }
-  .c-stat:last-child { border-bottom: none; }
-  .form-two-col { grid-template-columns: 1fr; }
-  .contact-form-panel { padding: 28px 20px; }
-  .plants-grid { grid-template-columns: 1fr; }
-}
-</style>
+    /* Hero illustration panel */
+    .contact-hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-visual-card {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      padding: 32px;
+      width: 100%;
+      max-width: 340px;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-visual-stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
+
+    .hero-visual-stat:last-child {
+      border-bottom: none;
+    }
+
+    .hero-stat-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      background: rgba(232, 82, 10, .15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+    }
+
+    .hero-stat-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hero-stat-label {
+      font-family: var(--ff-ui);
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .4);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 3px;
+    }
+
+    .hero-stat-value {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Stats strip */
+    .contact-stats-strip {
+      background: var(--navy);
+      border-bottom: 2px solid rgba(232, 82, 10, .3);
+    }
+
+    .contact-stats-inner {
+      display: flex;
+      justify-content: space-between;
+      padding: 28px 0;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .c-stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 24px;
+      border-right: 1px solid rgba(255, 255, 255, .08);
+      flex: 1;
+      min-width: 160px;
+    }
+
+    .c-stat:last-child {
+      border-right: none;
+    }
+
+    .c-stat-icon {
+      width: 46px;
+      height: 46px;
+      flex-shrink: 0;
+      background: rgba(232, 82, 10, .15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+    }
+
+    .c-stat-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .c-stat-num {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .c-stat-label {
+      font-family: var(--ff-ui);
+      font-size: .72rem;
+      color: rgba(255, 255, 255, .45);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    /* Contact main layout */
+    .contact-main {
+      background: var(--offwhite);
+      padding: 80px 0;
+    }
+
+    .contact-main-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* Form */
+    .contact-form-panel {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px;
+      box-shadow: 0 4px 32px rgba(0, 0, 0, .08);
+      border: 1px solid var(--gray-200);
+    }
+
+    .form-panel-header {
+      margin-bottom: 32px;
+    }
+
+    .form-panel-eyebrow {
+      font-family: var(--ff-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .form-panel-header h2 {
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .form-panel-header p {
+      color: var(--slate);
+      font-weight: 300;
+      font-size: .95rem;
+    }
+
+    /* Floating label inputs */
+    .fl-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .fl-group label {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+      transform: translateY(-50%);
+      font-family: var(--ff-ui);
+      font-size: .88rem;
+      color: var(--gray-400);
+      pointer-events: none;
+      transition: all .2s ease;
+      background: var(--white);
+      padding: 0 4px;
+    }
+
+    .fl-group.textarea-group label {
+      top: 16px;
+      transform: none;
+    }
+
+    .fl-group input,
+    .fl-group select,
+    .fl-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 10px;
+      font-family: var(--ff-body);
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--white);
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+    }
+
+    .fl-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0AEC0' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 16px;
+      padding-right: 40px;
+    }
+
+    .fl-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .fl-group input:focus,
+    .fl-group select:focus,
+    .fl-group textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(232, 82, 10, .08);
+    }
+
+    .fl-group input:focus+label,
+    .fl-group input:not(:placeholder-shown)+label,
+    .fl-group select:focus+label,
+    .fl-group select:not([value=""])+label,
+    .fl-group textarea:focus+label,
+    .fl-group textarea:not(:placeholder-shown)+label {
+      top: 0;
+      font-size: .72rem;
+      color: var(--orange);
+      transform: translateY(-50%);
+    }
+
+    .form-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background .25s, transform .2s, box-shadow .2s;
+      margin-top: 8px;
+    }
+
+    .form-submit-btn:hover {
+      background: var(--orange-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 82, 10, .3);
+    }
+
+    .form-submit-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .form-note {
+      text-align: center;
+      margin-top: 14px;
+      font-family: var(--ff-ui);
+      font-size: .75rem;
+      color: var(--gray-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .form-note svg {
+      width: 12px;
+      height: 12px;
+      color: var(--orange);
+    }
+
+    /* Info panel */
+    .contact-info-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      border: 1.5px solid var(--gray-200);
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+    }
+
+    .info-card:hover {
+      border-color: var(--orange);
+      transform: translateX(5px);
+      box-shadow: 0 4px 20px rgba(232, 82, 10, .08);
+    }
+
+    .info-card-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, rgba(232, 82, 10, .12), rgba(232, 82, 10, .05));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+      border: 1px solid rgba(232, 82, 10, .15);
+    }
+
+    .info-card-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .info-card-label {
+      font-family: var(--ff-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .info-card h5 {
+      color: var(--navy);
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .info-card p {
+      color: var(--slate);
+      font-size: .88rem;
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .info-card a {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .info-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hours card */
+    .hours-card {
+      background: var(--navy);
+      border-radius: 14px;
+      padding: 24px;
+      color: white;
+    }
+
+    .hours-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .hours-card-title svg {
+      width: 18px;
+      height: 18px;
+      color: var(--orange);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+      font-size: .88rem;
+    }
+
+    .hours-row:last-child {
+      border-bottom: none;
+    }
+
+    .hours-row span:first-child {
+      color: rgba(255, 255, 255, .5);
+      font-weight: 300;
+    }
+
+    .hours-row span:last-child {
+      color: #fff;
+      font-weight: 600;
+      font-family: var(--ff-ui);
+      font-size: .82rem;
+    }
+
+    .hours-row .status-open {
+      color: #4ade80;
+      background: rgba(74, 222, 128, .1);
+      padding: 2px 10px;
+      border-radius: 40px;
+      font-size: .72rem;
+      font-weight: 700;
+      font-family: var(--ff-ui);
+    }
+
+    .hours-row .status-closed {
+      color: rgba(255, 255, 255, .35);
+      background: rgba(255, 255, 255, .06);
+      padding: 2px 10px;
+      border-radius: 40px;
+      font-size: .72rem;
+      font-weight: 700;
+      font-family: var(--ff-ui);
+    }
+
+    /* Plants section */
+    .plants-section {
+      background: var(--white);
+      padding: 72px 0;
+    }
+
+    .plants-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .plant-card {
+      background: var(--offwhite);
+      border-radius: 16px;
+      padding: 0;
+      border: 1.5px solid var(--gray-200);
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .plant-photo {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+
+    .plant-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .plant-card:hover .plant-photo img {
+      transform: scale(1.06);
+    }
+
+    .plant-card-body {
+      padding: 24px 28px 28px;
+    }
+
+    .plant-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+
+    .plant-card:hover {
+      border-color: var(--orange);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .plant-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .plant-number {
+      font-family: var(--ff-display);
+      font-size: 3rem;
+      font-weight: 800;
+      color: rgba(11, 31, 58, .06);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .plant-tag {
+      font-family: var(--ff-ui);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .plant-card h4 {
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .plant-card p {
+      color: var(--slate);
+      font-size: .88rem;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .plant-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-family: var(--ff-ui);
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--orange);
+      transition: gap .2s;
+    }
+
+    .plant-link:hover {
+      gap: 10px;
+    }
+
+    .plant-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Map */
+    .map-section {
+      background: var(--offwhite);
+      padding: 72px 0;
+    }
+
+    .map-container {
+      margin-top: 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, .12);
+      border: 1px solid var(--gray-200);
+      height: 440px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    /* Success message */
+    .form-success {
+      display: none;
+      background: linear-gradient(135deg, rgba(74, 222, 128, .1), rgba(74, 222, 128, .05));
+      border: 1.5px solid rgba(74, 222, 128, .3);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .form-success svg {
+      width: 40px;
+      height: 40px;
+      color: #4ade80;
+      margin: 0 auto 12px;
+    }
+
+    .form-success h4 {
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-success p {
+      color: var(--slate);
+      font-size: .9rem;
+      font-weight: 300;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .contact-hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-hero-visual {
+        display: none;
+      }
+
+      .contact-main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plants-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-stats-inner {
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .c-stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
+        padding: 16px 0;
+      }
+
+      .c-stat:last-child {
+        border-bottom: none;
+      }
+
+      .form-two-col {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-panel {
+        padding: 28px 20px;
+      }
+
+      .plants-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══ NAVBAR ══════════════════════════════════════════ -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
-    </a>
-    <ul class="nav-links">
-      <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="about.html#history">Company History</a>
-          <a href="about.html#vision">Our Vision</a>
-          <a href="about.html#strengths">Our Strengths</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="markets.html#markets">Markets We Serve</a>
-          <a href="markets.html#components">Automotive Components</a>
-          <a href="markets.html#oem">OEM Products</a>
-          <a href="markets.html#aftermarket">Aftermarket Products</a>
-          <a href="markets.html#quality">Quality Standards</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="careers.html#why">Why Choose Us</a>
-          <a href="careers.html#benefits">Employee Benefits</a>
-          <a href="careers.html#learning">Learning &amp; Development</a>
-          <a href="careers.html#opportunities">Current Opportunities</a>
-          <a href="careers.html#culture">Company Culture</a>
-        </div>
-      </li>
-      <li class="nav-item"><a class="nav-link active" href="contact.html" data-page="contact.html">Contact Us</a></li>
-    </ul>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
-<!-- Mobile Nav -->
-<div class="nav-mobile" id="navMobile">
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="about.html#history">Company History</a><a href="about.html#vision">Our Vision</a><a href="about.html#strengths">Our Strengths</a></div>
-  </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="markets.html#markets">Markets We Serve</a><a href="markets.html#components">Automotive Components</a><a href="markets.html#oem">OEM Products</a></div>
-  </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="careers.html#why">Why Choose Us</a><a href="careers.html#benefits">Benefits</a><a href="careers.html#opportunities">Opportunities</a></div>
-  </div>
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
-  <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
-</div>
-
-<!-- ══ CONTACT HERO ══════════════════════════════════ -->
-<section class="contact-page-hero">
-  <div class="container contact-hero-grid">
-    <div>
-      <div class="contact-hero-eyebrow">Get in Touch</div>
-      <h1 class="contact-hero-title">
-        Start Your<br><span>Partnership</span><br>With AutoVerse
-      </h1>
-      <p class="contact-hero-desc">
-        Our engineering and sales teams are ready to discuss your requirements, provide technical consultations, and turn your inquiry into a long-term partnership.
-      </p>
-      <div class="contact-hero-badges">
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-          Response within 1 business day
-        </div>
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          24/7 Plant Operations
-        </div>
-        <div class="hero-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-          Dedicated Account Manager
-        </div>
-      </div>
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
+      </a>
+      <ul class="nav-links">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="about.html#history">Company History</a>
+            <a href="about.html#vision">Our Vision</a>
+            <a href="about.html#strengths">Our Strengths</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span
+              class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="markets.html#markets">Markets We Serve</a>
+            <a href="markets.html#components">Automotive Components</a>
+            <a href="markets.html#oem">OEM Products</a>
+            <a href="markets.html#aftermarket">Aftermarket Products</a>
+            <a href="markets.html#quality">Quality Standards</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="careers.html#why">Why Choose Us</a>
+            <a href="careers.html#benefits">Employee Benefits</a>
+            <a href="careers.html#learning">Learning &amp; Development</a>
+            <a href="careers.html#opportunities">Current Opportunities</a>
+            <a href="careers.html#culture">Company Culture</a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html" data-page="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary"
+          style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </div>
+  </nav>
 
-    <div class="contact-hero-visual">
-      <div class="hero-visual-card">
-        <div class="hero-visual-stat">
-          <div class="hero-stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-label">Manufacturing Plants</div>
-            <div class="hero-stat-value">3 Locations Across India</div>
-          </div>
-        </div>
-        <div class="hero-visual-stat">
-          <div class="hero-stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-label">Sales Hotline</div>
-            <div class="hero-stat-value">+91 20 2712 4801</div>
-          </div>
-        </div>
-        <div class="hero-visual-stat">
-          <div class="hero-stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-label">Email</div>
-            <div class="hero-stat-value">sales@autoverse.in</div>
-          </div>
-        </div>
-        <div class="hero-visual-stat">
-          <div class="hero-stat-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="hero-stat-label">Business Hours</div>
-            <div class="hero-stat-value">Mon–Fri, 8 AM–6 PM</div>
-          </div>
-        </div>
-      </div>
+  <!-- Mobile Nav -->
+  <div class="nav-mobile" id="navMobile">
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="about.html#history">Company History</a><a href="about.html#vision">Our
+          Vision</a><a href="about.html#strengths">Our Strengths</a></div>
     </div>
-  </div>
-</section>
-
-<!-- ══ STATS STRIP ══════════════════════════════════ -->
-<div class="contact-stats-strip">
-  <div class="container contact-stats-inner">
-    <div class="c-stat">
-      <div class="c-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span>
       </div>
+      <div class="nav-mobile-sub"><a href="markets.html#markets">Markets We Serve</a><a
+          href="markets.html#components">Automotive Components</a><a href="markets.html#oem">OEM Products</a></div>
+    </div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="careers.html#why">Why Choose Us</a><a
+          href="careers.html#benefits">Benefits</a><a href="careers.html#opportunities">Opportunities</a></div>
+    </div>
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
+  </div>
+
+  <!-- ══ CONTACT HERO ══════════════════════════════════ -->
+  <section class="contact-page-hero">
+    <div class="contact-hero-bg-img"></div>
+    <div class="container contact-hero-grid">
       <div>
-        <div class="c-stat-num">3,200+</div>
-        <div class="c-stat-label">Employees Worldwide</div>
-      </div>
-    </div>
-    <div class="c-stat">
-      <div class="c-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      </div>
-      <div>
-        <div class="c-stat-num">3</div>
-        <div class="c-stat-label">Plants — Pune, Chennai, Manesar</div>
-      </div>
-    </div>
-    <div class="c-stat">
-      <div class="c-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      </div>
-      <div>
-        <div class="c-stat-num">&lt;24h</div>
-        <div class="c-stat-label">Average Response Time</div>
-      </div>
-    </div>
-    <div class="c-stat">
-      <div class="c-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
-      </div>
-      <div>
-        <div class="c-stat-num">28+</div>
-        <div class="c-stat-label">Export Countries</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CONTACT FORM + INFO ══════════════════════════ -->
-<section class="contact-main" id="contact">
-  <div class="container">
-    <div class="contact-main-grid">
-
-      <!-- FORM -->
-      <div class="contact-form-panel anim-left">
-        <div class="form-panel-header">
-          <div class="form-panel-eyebrow">Send a Message</div>
-          <h2>Let's Talk Business</h2>
-          <p>Fill in the form below and our team will get back to you within one business day.</p>
+        <div class="contact-hero-eyebrow">Get in Touch</div>
+        <h1 class="contact-hero-title">
+          Start Your<br><span>Partnership</span><br>With AutoVerse
+        </h1>
+        <p class="contact-hero-desc">
+          Our engineering and sales teams are ready to discuss your requirements, provide technical consultations, and
+          turn your inquiry into a long-term partnership.
+        </p>
+        <div class="contact-hero-badges">
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Response within 1 business day
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            24/7 Plant Operations
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 00-3-3.87" />
+              <path d="M16 3.13a4 4 0 010 7.75" />
+            </svg>
+            Dedicated Account Manager
+          </div>
         </div>
+      </div>
 
-        <form id="contact-form" novalidate>
-          <div class="form-two-col">
-            <div class="fl-group">
-              <input type="text" id="fname" name="fname" placeholder=" " required/>
-              <label for="fname">First Name *</label>
+      <div class="contact-hero-visual">
+        <div class="hero-visual-card">
+          <div class="hero-visual-stat">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
             </div>
-            <div class="fl-group">
-              <input type="text" id="lname" name="lname" placeholder=" " required/>
-              <label for="lname">Last Name *</label>
+            <div>
+              <div class="hero-stat-label">Manufacturing Plants</div>
+              <div class="hero-stat-value">3 Locations Across India</div>
             </div>
           </div>
-          <div class="form-two-col">
-            <div class="fl-group">
-              <input type="email" id="email" name="email" placeholder=" " required/>
-              <label for="email">Email Address *</label>
+          <div class="hero-visual-stat">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Sales Hotline</div>
+              <div class="hero-stat-value">+91 20 2712 4801</div>
+            </div>
+          </div>
+          <div class="hero-visual-stat">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Email</div>
+              <div class="hero-stat-value">sales@autoverse.in</div>
+            </div>
+          </div>
+          <div class="hero-visual-stat">
+            <div class="hero-stat-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            <div>
+              <div class="hero-stat-label">Business Hours</div>
+              <div class="hero-stat-value">Mon–Fri, 8 AM–6 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STATS STRIP ══════════════════════════════════ -->
+  <div class="contact-stats-strip">
+    <div class="container contact-stats-inner">
+      <div class="c-stat">
+        <div class="c-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+            <path d="M16 3.13a4 4 0 010 7.75" />
+          </svg>
+        </div>
+        <div>
+          <div class="c-stat-num">3,200+</div>
+          <div class="c-stat-label">Employees Worldwide</div>
+        </div>
+      </div>
+      <div class="c-stat">
+        <div class="c-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </div>
+        <div>
+          <div class="c-stat-num">3</div>
+          <div class="c-stat-label">Plants — Pune, Chennai, Manesar</div>
+        </div>
+      </div>
+      <div class="c-stat">
+        <div class="c-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+        </div>
+        <div>
+          <div class="c-stat-num">&lt;24h</div>
+          <div class="c-stat-label">Average Response Time</div>
+        </div>
+      </div>
+      <div class="c-stat">
+        <div class="c-stat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <polyline points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+          </svg>
+        </div>
+        <div>
+          <div class="c-stat-num">28+</div>
+          <div class="c-stat-label">Export Countries</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ CONTACT FORM + INFO ══════════════════════════ -->
+  <section class="contact-main" id="contact">
+    <div class="container">
+      <div class="contact-main-grid">
+
+        <!-- FORM -->
+        <div class="contact-form-panel anim-left">
+          <div class="form-panel-header">
+            <div class="form-panel-eyebrow">Send a Message</div>
+            <h2>Let's Talk Business</h2>
+            <p>Fill in the form below and our team will get back to you within one business day.</p>
+          </div>
+
+          <form id="contact-form" novalidate>
+            <div class="form-two-col">
+              <div class="fl-group">
+                <input type="text" id="fname" name="fname" placeholder=" " required />
+                <label for="fname">First Name *</label>
+              </div>
+              <div class="fl-group">
+                <input type="text" id="lname" name="lname" placeholder=" " required />
+                <label for="lname">Last Name *</label>
+              </div>
+            </div>
+            <div class="form-two-col">
+              <div class="fl-group">
+                <input type="email" id="email" name="email" placeholder=" " required />
+                <label for="email">Email Address *</label>
+              </div>
+              <div class="fl-group">
+                <input type="tel" id="phone" name="phone" placeholder=" " />
+                <label for="phone">Phone Number</label>
+              </div>
             </div>
             <div class="fl-group">
-              <input type="tel" id="phone" name="phone" placeholder=" "/>
-              <label for="phone">Phone Number</label>
+              <input type="text" id="company" name="company" placeholder=" " />
+              <label for="company">Company / Organisation</label>
+            </div>
+            <div class="fl-group">
+              <select id="subject" name="subject">
+                <option value="" disabled selected></option>
+                <option>Request a Quote</option>
+                <option>Technical Inquiry</option>
+                <option>OEM Partnership</option>
+                <option>Aftermarket / Distributor</option>
+                <option>Careers / Recruitment</option>
+                <option>Supplier Registration</option>
+                <option>Other</option>
+              </select>
+              <label for="subject">Subject / Topic *</label>
+            </div>
+            <div class="fl-group textarea-group">
+              <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+              <label for="message">Message *</label>
+            </div>
+
+            <button type="submit" class="form-submit-btn" id="contact-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Send Message
+            </button>
+            <div class="form-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0110 0v4" />
+              </svg>
+              Your information is encrypted and never shared with third parties.
+            </div>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <h4>Message Sent Successfully!</h4>
+            <p>Thank you for reaching out. Our team will respond within 1 business day.</p>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info-panel anim-up delay-2">
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <div class="info-card-label">Head Office</div>
+              <h5>Registered &amp; Head Office</h5>
+              <p>Plot 14, MIDC Industrial Area,<br>Pimpri-Chinchwad, Pune 411019,<br>Maharashtra, India</p>
             </div>
           </div>
-          <div class="fl-group">
-            <input type="text" id="company" name="company" placeholder=" "/>
-            <label for="company">Company / Organisation</label>
-          </div>
-          <div class="fl-group">
-            <select id="subject" name="subject">
-              <option value="" disabled selected></option>
-              <option>Request a Quote</option>
-              <option>Technical Inquiry</option>
-              <option>OEM Partnership</option>
-              <option>Aftermarket / Distributor</option>
-              <option>Careers / Recruitment</option>
-              <option>Supplier Registration</option>
-              <option>Other</option>
-            </select>
-            <label for="subject">Subject / Topic *</label>
-          </div>
-          <div class="fl-group textarea-group">
-            <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
-            <label for="message">Message *</label>
+
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+              </svg>
+            </div>
+            <div>
+              <div class="info-card-label">Phone</div>
+              <h5>Call Us Directly</h5>
+              <p>
+                General: <a href="tel:+912027124800">+91 20 2712 4800</a><br>
+                Sales: <a href="tel:+912027124801">+91 20 2712 4801</a><br>
+                Careers: <a href="tel:+912027124802">+91 20 2712 4802</a>
+              </p>
+            </div>
           </div>
 
-          <button type="submit" class="form-submit-btn" id="contact-submit">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Send Message
-          </button>
-          <div class="form-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            Your information is encrypted and never shared with third parties.
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+            </div>
+            <div>
+              <div class="info-card-label">Email</div>
+              <h5>Write to Us</h5>
+              <p>
+                Sales: <a href="mailto:sales@autoverse.in">sales@autoverse.in</a><br>
+                General: <a href="mailto:info@autoverse.in">info@autoverse.in</a><br>
+                Careers: <a href="mailto:careers@autoverse.in">careers@autoverse.in</a>
+              </p>
+            </div>
           </div>
-        </form>
 
-        <div class="form-success" id="formSuccess">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h4>Message Sent Successfully!</h4>
-          <p>Thank you for reaching out. Our team will respond within 1 business day.</p>
+          <div class="hours-card">
+            <div class="hours-card-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Business Hours
+            </div>
+            <div class="hours-row">
+              <span>Monday – Friday</span>
+              <span class="status-open">8:00 AM – 6:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span>Saturday</span>
+              <span class="status-open">9:00 AM – 2:00 PM</span>
+            </div>
+            <div class="hours-row">
+              <span>Sunday</span>
+              <span class="status-closed">Closed</span>
+            </div>
+            <div class="hours-row">
+              <span>Plant Ops (Mon–Sat)</span>
+              <span>6:00 AM – 10:00 PM</span>
+            </div>
+          </div>
+
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- INFO -->
-      <div class="contact-info-panel anim-up delay-2">
-
-        <div class="info-card">
-          <div class="info-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div class="info-card-label">Head Office</div>
-            <h5>Registered &amp; Head Office</h5>
-            <p>Plot 14, MIDC Industrial Area,<br>Pimpri-Chinchwad, Pune 411019,<br>Maharashtra, India</p>
-          </div>
+  <!-- ══ FACILITY IMAGE STRIP ══════════════════════════ -->
+  <section class="section-sm" style="background:var(--white);">
+    <div class="container">
+      <div class="section-line"><span>Visit Us</span></div>
+      <h2 class="section-title anim-up">Our Offices &amp; Plants</h2>
+      <p class="section-sub anim-up delay-1">A look at the facilities you'll be working with — from the head office to
+        the shop floor.</p>
+      <div class="contact-imagestrip-grid">
+        <div class="gallery-item">
+          <img src="assets/images/plant_pune.jpg"
+            alt="Pune headquarters assembly floor" loading="lazy" />
+          <div class="gallery-caption">Pune HQ</div>
         </div>
-
-        <div class="info-card">
-          <div class="info-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          </div>
-          <div>
-            <div class="info-card-label">Phone</div>
-            <h5>Call Us Directly</h5>
-            <p>
-              General: <a href="tel:+912027124800">+91 20 2712 4800</a><br>
-              Sales: <a href="tel:+912027124801">+91 20 2712 4801</a><br>
-              Careers: <a href="tel:+912027124802">+91 20 2712 4802</a>
-            </p>
-          </div>
+        <div class="gallery-item">
+          <img src="assets/images/plant_chennai.jpg"
+            alt="Chennai plant CNC machining floor" loading="lazy" />
+          <div class="gallery-caption">Chennai Plant</div>
         </div>
-
-        <div class="info-card">
-          <div class="info-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <div>
-            <div class="info-card-label">Email</div>
-            <h5>Write to Us</h5>
-            <p>
-              Sales: <a href="mailto:sales@autoverse.in">sales@autoverse.in</a><br>
-              General: <a href="mailto:info@autoverse.in">info@autoverse.in</a><br>
-              Careers: <a href="mailto:careers@autoverse.in">careers@autoverse.in</a>
-            </p>
-          </div>
+        <div class="gallery-item">
+          <img src="assets/images/plant_manesar.png"
+            alt="Manesar quality control lab" loading="lazy" />
+          <div class="gallery-caption">Manesar Plant</div>
         </div>
-
-        <div class="hours-card">
-          <div class="hours-card-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Business Hours
-          </div>
-          <div class="hours-row">
-            <span>Monday – Friday</span>
-            <span class="status-open">8:00 AM – 6:00 PM</span>
-          </div>
-          <div class="hours-row">
-            <span>Saturday</span>
-            <span class="status-open">9:00 AM – 2:00 PM</span>
-          </div>
-          <div class="hours-row">
-            <span>Sunday</span>
-            <span class="status-closed">Closed</span>
-          </div>
-          <div class="hours-row">
-            <span>Plant Ops (Mon–Sat)</span>
-            <span>6:00 AM – 10:00 PM</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PLANT LOCATIONS ══════════════════════════════ -->
-<section class="plants-section" id="locations">
-  <div class="container">
-    <div class="section-line"><span>Our Footprint</span></div>
-    <h2 class="section-title anim-up">Manufacturing Locations</h2>
-    <p class="section-sub anim-up delay-1">Three plants strategically positioned across India's automotive manufacturing belt — serving OEMs and Tier-1 suppliers nationwide.</p>
-    <div class="plants-grid">
-      <div class="plant-card anim-up delay-1">
-        <div class="plant-number">01</div>
-        <div class="plant-tag">Plant 01 — HQ</div>
-        <h4>Pune, Maharashtra</h4>
-        <p>Plot 14, MIDC Industrial Area,<br>Pimpri-Chinchwad, Pune 411019</p>
-        <a href="https://maps.google.com/?q=MIDC+Pimpri+Chinchwad+Pune" target="_blank" rel="noopener" class="plant-link">
-          View on Maps
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </div>
-      <div class="plant-card anim-up delay-2">
-        <div class="plant-number">02</div>
-        <div class="plant-tag">Plant 02</div>
-        <h4>Chennai, Tamil Nadu</h4>
-        <p>SIPCOT Industrial Park,<br>Sriperumbudur, Chennai 602105</p>
-        <a href="https://maps.google.com/?q=SIPCOT+Sriperumbudur+Chennai" target="_blank" rel="noopener" class="plant-link">
-          View on Maps
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </div>
-      <div class="plant-card anim-up delay-3">
-        <div class="plant-number">03</div>
-        <div class="plant-tag">Plant 03</div>
-        <h4>Manesar, Haryana</h4>
-        <p>IMT Manesar, Plot 22,<br>Gurugram, Haryana 122051</p>
-        <a href="https://maps.google.com/?q=IMT+Manesar+Gurugram" target="_blank" rel="noopener" class="plant-link">
-          View on Maps
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ MAP ══════════════════════════════════════════ -->
-<section class="map-section">
-  <div class="container">
-    <div class="section-line"><span>Find Us</span></div>
-    <h2 class="section-title anim-up">Head Office — Pune</h2>
-    <p class="section-sub anim-up delay-1">MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</p>
-    <div class="map-container anim-fade delay-2">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121058.93703447085!2d73.78056684277326!3d18.52436094565413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000"
-        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CTA ══════════════════════════════════════════ -->
-<section class="cta-section">
-  <div class="cta-bg"></div>
-  <div class="container cta-inner">
-    <div class="cta-text anim-up">
-      <span class="tag">Partnership Awaits</span>
-      <h2>Let's Start a Conversation<br>About Your Requirements</h2>
-      <p>Whether you need a single prototype or a multi-million-unit annual programme, our team is ready to support you.</p>
-    </div>
-    <div class="cta-actions anim-up delay-2">
-      <a href="markets.html" class="btn btn-primary">View Our Products</a>
-      <a href="about.html" class="btn btn-outline">About AutoVerse</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══════════════════════════════════════ -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>Auto<span>Verse</span></a>
-        <p>Precision-engineered automotive components for the world's leading vehicle manufacturers. Built to last, delivered on time.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <div class="gallery-item">
+          <img src="assets/images/team_illustration.png"
+            alt="AutoVerse customer success team" loading="lazy" />
+          <div class="gallery-caption">Our Team</div>
         </div>
       </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="about.html#history">Our History</a></li><li><a href="about.html#vision">Vision &amp; Mission</a></li><li><a href="about.html#strengths">Our Strengths</a></li></ul></div>
-      <div class="footer-col"><h5>Products</h5><ul><li><a href="markets.html#components">Engine Components</a></li><li><a href="markets.html#oem">OEM Products</a></li><li><a href="markets.html#aftermarket">Aftermarket Parts</a></li><li><a href="markets.html#quality">Quality Standards</a></li><li><a href="careers.html">Careers</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plot 14, MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>+91 20 2712 4800</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>info@autoverse.in</span></div>
+    </div>
+  </section>
+
+  <!-- ══ PLANT LOCATIONS ══════════════════════════════ -->
+  <section class="plants-section" id="locations">
+    <div class="container">
+      <div class="section-line"><span>Our Footprint</span></div>
+      <h2 class="section-title anim-up">Manufacturing Locations</h2>
+      <p class="section-sub anim-up delay-1">Three plants strategically positioned across India's automotive
+        manufacturing belt — serving OEMs and Tier-1 suppliers nationwide.</p>
+      <div class="plants-grid">
+        <div class="plant-card anim-up delay-1">
+          <div class="plant-photo"><img
+              src="assets/images/plant_pune.jpg"
+              alt="AutoVerse Plant 01 — Pune headquarters" loading="lazy" /></div>
+          <div class="plant-card-body">
+            <div class="plant-number">01</div>
+            <div class="plant-tag">Plant 01 — HQ</div>
+            <h4>Pune, Maharashtra</h4>
+            <p>Plot 14, MIDC Industrial Area,<br>Pimpri-Chinchwad, Pune 411019</p>
+            <a href="https://maps.google.com/?q=MIDC+Pimpri+Chinchwad+Pune" target="_blank" rel="noopener"
+              class="plant-link">
+              View on Maps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="plant-card anim-up delay-2">
+          <div class="plant-photo"><img
+              src="assets/images/plant_chennai.jpg"
+              alt="AutoVerse Plant 02 — Chennai machining floor" loading="lazy" /></div>
+          <div class="plant-card-body">
+            <div class="plant-number">02</div>
+            <div class="plant-tag">Plant 02</div>
+            <h4>Chennai, Tamil Nadu</h4>
+            <p>SIPCOT Industrial Park,<br>Sriperumbudur, Chennai 602105</p>
+            <a href="https://maps.google.com/?q=SIPCOT+Sriperumbudur+Chennai" target="_blank" rel="noopener"
+              class="plant-link">
+              View on Maps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="plant-card anim-up delay-3">
+          <div class="plant-photo"><img
+              src="assets/images/plant_manesar.png"
+              alt="AutoVerse Plant 03 — Manesar quality lab" loading="lazy" /></div>
+          <div class="plant-card-body">
+            <div class="plant-number">03</div>
+            <div class="plant-tag">Plant 03</div>
+            <h4>Manesar, Haryana</h4>
+            <p>IMT Manesar, Plot 22,<br>Gurugram, Haryana 122051</p>
+            <a href="https://maps.google.com/?q=IMT+Manesar+Gurugram" target="_blank" rel="noopener" class="plant-link">
+              View on Maps
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
-      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
-    </div>
-  </div>
-</footer>
+  </section>
 
-<script src="assets/js/main.js"></script>
-<script>
-  // Contact form submit handler with success state
-  const form = document.getElementById('contact-form');
-  const successMsg = document.getElementById('formSuccess');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      // Simulate send
-      const btn = document.getElementById('contact-submit');
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-      setTimeout(() => {
-        form.style.display = 'none';
-        successMsg.style.display = 'block';
-      }, 1200);
+  <!-- ══ MAP ══════════════════════════════════════════ -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-line"><span>Find Us</span></div>
+      <h2 class="section-title anim-up">Head Office — Pune</h2>
+      <p class="section-sub anim-up delay-1">MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</p>
+      <div class="map-container anim-fade delay-2">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121058.93703447085!2d73.78056684277326!3d18.52436094565413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══════════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container cta-inner">
+      <div class="cta-text anim-up">
+        <span class="tag">Partnership Awaits</span>
+        <h2>Let's Start a Conversation<br>About Your Requirements</h2>
+        <p>Whether you need a single prototype or a multi-million-unit annual programme, our team is ready to support
+          you.</p>
+      </div>
+      <div class="cta-actions anim-up delay-2">
+        <a href="markets.html" class="btn btn-primary">View Our Products</a>
+        <a href="about.html" class="btn btn-outline">About AutoVerse</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo">
+            <div class="nav-logo-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+              </svg></div>Auto<span>Verse</span>
+          </a>
+          <p>Precision-engineered automotive components for the world's leading vehicle manufacturers. Built to last,
+            delivered on time.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="5" />
+                <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg></a>
+          </div>
+          <div class="footer-certs">
+            <span class="footer-cert-badge">IATF 16949</span>
+            <span class="footer-cert-badge">ISO 9001</span>
+            <span class="footer-cert-badge">ISO 14001</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#history">Our History</a></li>
+            <li><a href="about.html#vision">Vision &amp; Mission</a></li>
+            <li><a href="about.html#strengths">Our Strengths</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Products</h5>
+          <ul>
+            <li><a href="markets.html#components">Engine Components</a></li>
+            <li><a href="markets.html#oem">OEM Products</a></li>
+            <li><a href="markets.html#aftermarket">Aftermarket Parts</a></li>
+            <li><a href="markets.html#quality">Quality Standards</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg><span>Plot 14, MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</span></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg><span>+91 20 2712 4800</span></div>
+          <div class="footer-contact-item"><svg viewBox="0 0 24 24">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg><span>info@autoverse.in</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Contact form submit handler with success state
+    const form = document.getElementById('contact-form');
+    const successMsg = document.getElementById('formSuccess');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Simulate send
+        const btn = document.getElementById('contact-submit');
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        setTimeout(() => {
+          form.style.display = 'none';
+          successMsg.style.display = 'block';
+        }, 1200);
+      });
+    }
+
+    // Select label floating behavior
+    document.querySelectorAll('.fl-group select').forEach(sel => {
+      sel.addEventListener('change', () => {
+        if (sel.value) sel.setAttribute('data-has-value', '1');
+        else sel.removeAttribute('data-has-value');
+      });
     });
-  }
-
-  // Select label floating behavior
-  document.querySelectorAll('.fl-group select').forEach(sel => {
-    sel.addEventListener('change', () => {
-      if (sel.value) sel.setAttribute('data-has-value', '1');
-      else sel.removeAttribute('data-has-value');
-    });
-  });
-</script>
+  </script>
 </body>
+
 </html>

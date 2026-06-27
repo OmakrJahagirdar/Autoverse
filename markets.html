@@ -1,362 +1,802 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Markets &amp; Products — AutoVerse Industries</title>
-<meta name="description" content="AutoVerse supplies precision automotive components for passenger vehicles, commercial vehicles, two-wheelers, and off-highway equipment."/>
-<link rel="stylesheet" href="assets/css/style.css"/>
-<link rel="stylesheet" href="assets/css/inner.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Markets &amp; Products — AutoVerse Industries</title>
+  <meta name="description"
+    content="AutoVerse supplies precision automotive components for passenger vehicles, commercial vehicles, two-wheelers, and off-highway equipment." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/inner.css" />
+  <style>
+    /* ── Markets Hero ── */
+    .markets-page-hero {
+      position: relative;
+      min-height: 460px;
+      background: linear-gradient(135deg, #060f1e 0%, #0B1F3A 45%, #112a4a 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .markets-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('assets/images/markets_hero.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+    }
+
+    .markets-hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(6, 15, 30, .9) 0%, rgba(6, 15, 30, .3) 100%);
+    }
+
+    .markets-hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 120px 0 56px;
+      max-width: 640px;
+    }
+
+    .markets-hero-inner h1 {
+      color: white;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      margin-bottom: 18px;
+      line-height: 1.05;
+    }
+
+    .markets-hero-inner p {
+      color: rgba(255, 255, 255, .55);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* ── Image Cards for market segments ── */
+    .market-seg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 12px;
+    }
+
+    .market-seg-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 200px;
+      cursor: default;
+    }
+
+    .market-seg-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .market-seg-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .market-seg-card .seg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(6, 15, 30, .85) 0%, rgba(6, 15, 30, .2) 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px;
+    }
+
+    .market-seg-card h5 {
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .market-seg-card p {
+      color: rgba(255, 255, 255, .6);
+      font-size: .82rem;
+      font-weight: 300;
+    }
+
+    /* ── Product image cards ── */
+    .product-img-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .product-img-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .product-img-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--orange);
+    }
+
+    .product-img-card .pic {
+      height: 180px;
+      overflow: hidden;
+    }
+
+    .product-img-card .pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-img-card:hover .pic img {
+      transform: scale(1.05);
+    }
+
+    .product-img-card .pic-body {
+      padding: 20px;
+    }
+
+    .product-img-card h5 {
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .product-img-card p {
+      font-size: .85rem;
+      color: var(--slate);
+      font-weight: 300;
+    }
+
+    .product-img-card .pic-tag {
+      display: inline-block;
+      background: rgba(232, 82, 10, .1);
+      color: var(--orange);
+      font-family: var(--ff-ui);
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 40px;
+      margin-bottom: 10px;
+    }
+
+    /* ── Catalogue CTA ── */
+    .catalogue-cta {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .catalogue-cta h3 {
+      color: white;
+      margin-bottom: 8px;
+    }
+
+    .catalogue-cta p {
+      color: rgba(255, 255, 255, .6);
+      max-width: 420px;
+      font-weight: 300;
+    }
+
+    /* ── Quality badges improved ── */
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .quality-item {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: var(--transition);
+      border-left: 4px solid var(--orange);
+    }
+
+    .quality-item:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .quality-item-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      background: rgba(232, 82, 10, .08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--orange);
+    }
+
+    .quality-item-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .quality-item h5 {
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .quality-item p {
+      font-size: .85rem;
+      color: var(--slate);
+      font-weight: 300;
+    }
+
+    @media(max-width:1024px) {
+      .markets-intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-img-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .market-seg-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:640px) {
+      .product-img-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quality-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .catalogue-cta {
+        padding: 32px 24px;
+      }
+
+      .markets-icons-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ══ NAVBAR ══════════════════════════════════════════ -->
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a href="index.html" class="nav-logo">
-      <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
-    </a>
-    <ul class="nav-links">
-      <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
-      <li class="nav-item">
-        <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="about.html#history">Company History</a>
-          <a href="about.html#vision">Our Vision</a>
-          <a href="about.html#strengths">Our Strengths</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="markets.html" data-page="markets.html">Markets &amp; Products <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="markets.html#markets">Markets We Serve</a>
-          <a href="markets.html#components">Automotive Components</a>
-          <a href="markets.html#oem">OEM Products</a>
-          <a href="markets.html#aftermarket">Aftermarket Products</a>
-          <a href="markets.html#quality">Quality Standards</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
-        <div class="nav-dropdown">
-          <a href="careers.html#why">Why Choose Us</a>
-          <a href="careers.html#benefits">Employee Benefits</a>
-          <a href="careers.html#learning">Learning &amp; Development</a>
-          <a href="careers.html#opportunities">Current Opportunities</a>
-          <a href="careers.html#culture">Company Culture</a>
-        </div>
-      </li>
-      <li class="nav-item"><a class="nav-link" href="contact.html" data-page="contact.html">Contact Us</a></li>
-    </ul>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
-  </div>
-</nav>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" />
+      </a>
+      <ul class="nav-links">
+        <li class="nav-item"><a class="nav-link" href="index.html" data-page="index.html">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html" data-page="about.html">About Us <span class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="about.html#history">Company History</a>
+            <a href="about.html#vision">Our Vision</a>
+            <a href="about.html#strengths">Our Strengths</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="markets.html" data-page="markets.html">Markets &amp; Products <span
+              class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="markets.html#markets">Markets We Serve</a>
+            <a href="markets.html#components">Automotive Components</a>
+            <a href="markets.html#oem">OEM Products</a>
+            <a href="markets.html#aftermarket">Aftermarket Products</a>
+            <a href="markets.html#quality">Quality Standards</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="careers.html" data-page="careers.html">Careers <span class="nav-plus">+</span></a>
+          <div class="nav-dropdown">
+            <a href="careers.html#why">Why AutoVerse</a>
+            <a href="careers.html#benefits">Employee Benefits</a>
+            <a href="careers.html#opportunities">Current Openings</a>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contact.html" data-page="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-cta"><a href="contact.html" class="btn btn-primary"
+          style="padding:10px 22px;font-size:.85rem;">Get a Quote</a></div>
+      <div class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
 
-<!-- Mobile Nav -->
-<div class="nav-mobile" id="navMobile">
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="about.html#history">Company History</a><a href="about.html#vision">Our Vision</a><a href="about.html#strengths">Our Strengths</a></div>
-  </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="markets.html#markets">Markets We Serve</a><a href="markets.html#components">Automotive Components</a><a href="markets.html#oem">OEM Products</a><a href="markets.html#aftermarket">Aftermarket Products</a></div>
-  </div>
-  <div class="nav-mobile-item">
-    <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
-    <div class="nav-mobile-sub"><a href="careers.html#why">Why Choose Us</a><a href="careers.html#benefits">Benefits</a><a href="careers.html#opportunities">Opportunities</a></div>
-  </div>
-  <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
-  <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
-</div>
-
-<!-- PAGE HERO -->
-<div class="page-hero">
-  <div class="page-hero-bg" style="background-image: url('assets/images/markets_hero.jpg');"></div>
-  <div class="page-hero-overlay"></div>
-  <div class="container page-hero-content">
-    <div class="breadcrumb anim-fade"><a href="index.html">Home</a> <span>›</span> <span>Markets &amp; Products</span></div>
-    <h1 class="anim-up delay-1">Markets &amp; Products</h1>
-    <p class="anim-up delay-2">Serving passenger vehicles, commercial fleets, two-wheelers, and off-highway equipment with precision-engineered components that meet the highest global standards.</p>
-  </div>
-</div>
-
-<!-- INTRO SECTION -->
-<section class="section">
-  <div class="container">
-    <div class="markets-intro-grid">
-      <div class="anim-left">
-        <div class="section-line"><span>Our Reach</span></div>
-        <h2 class="section-title">Built for Every <em style="color:var(--orange);font-style:normal;">Segment</em></h2>
-        <p style="color:var(--slate);font-weight:300;line-height:1.8;margin-bottom:28px;">AutoVerse components are specified in vehicles across four continents. From sub-compact city cars to heavy mining haul trucks, our manufacturing capability spans the full spectrum of the automotive and mobility industry.</p>
-        <p style="color:var(--slate);font-weight:300;line-height:1.8;margin-bottom:32px;">We hold approvals from Tier 1 and OEM customers across India, Europe, and North America — a testament to our consistent delivery of zero-defect quality at high volume.</p>
-        <div class="quality-badges">
-          <div class="quality-badge">
-            <strong>IATF 16949</strong>
-            <span>Automotive Quality Management System</span>
-          </div>
-          <div class="quality-badge">
-            <strong>ISO 9001:2015</strong>
-            <span>Quality Management Standard</span>
-          </div>
-          <div class="quality-badge">
-            <strong>ISO 14001</strong>
-            <span>Environmental Management</span>
-          </div>
-          <div class="quality-badge">
-            <strong>OHSAS 18001</strong>
-            <span>Occupational Health &amp; Safety</span>
-          </div>
-        </div>
+  <div class="nav-mobile" id="navMobile">
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="index.html">Home</a></div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="about">About Us <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="about.html#history">History</a><a href="about.html#vision">Vision</a></div>
+    </div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="markets">Markets &amp; Products <span class="nav-mobile-plus">+</span>
       </div>
-      <div class="markets-visual anim-fade delay-2">
-        <img src="assets/images/markets_segment.jpg" alt="Built for Every Segment" />
+      <div class="nav-mobile-sub"><a href="#markets">Markets</a><a href="#components">Components</a><a
+          href="#oem">OEM</a></div>
+    </div>
+    <div class="nav-mobile-item">
+      <div class="nav-mobile-link" data-toggle="careers">Careers <span class="nav-mobile-plus">+</span></div>
+      <div class="nav-mobile-sub"><a href="careers.html#benefits">Benefits</a><a
+          href="careers.html#opportunities">Openings</a></div>
+    </div>
+    <div class="nav-mobile-item"><a class="nav-mobile-link" href="contact.html">Contact Us</a></div>
+    <a href="contact.html" class="btn btn-primary" style="margin-top:24px;">Get a Quote</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="markets-page-hero">
+    <div class="markets-hero-bg"></div>
+    <div class="container">
+      <div class="markets-hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" style="color:rgba(255,255,255,.4);font-size:.82rem;">Home</a>
+          <span style="color:rgba(255,255,255,.25);margin:0 8px;font-size:.82rem;">/</span>
+          <span style="color:var(--orange);font-size:.82rem;">Markets &amp; Products</span>
+        </nav>
+        <h1>Markets &amp;<br><em style="color:var(--orange);font-style:normal;">Products</em></h1>
+        <p>Precision components for passenger cars, commercial vehicles, two-wheelers, EVs, and off-highway equipment.
+        </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- MARKET ICONS -->
-<section class="section-sm" style="background:var(--offwhite);">
-  <div class="container">
-    <div class="section-line"><span>Segments</span></div>
-    <h2 class="section-title anim-up">Industries We Power</h2>
-    <div class="markets-icons-grid">
-      <div class="market-icon-card anim-up delay-1">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="14" width="32" height="16" rx="4"/><circle cx="11" cy="30" r="4"/><circle cx="29" cy="30" r="4"/><path d="M4 22h32M14 14l4-6h8l4 6"/></svg>
-        <h5>Passenger Vehicles</h5>
-        <p>Sedans, SUVs, and hatchbacks from India's top OEMs and global Tier 1 suppliers.</p>
-      </div>
-      <div class="market-icon-card anim-up delay-2">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="12" width="36" height="18" rx="3"/><circle cx="10" cy="30" r="4"/><circle cx="30" cy="30" r="4"/><rect x="26" y="12" width="12" height="10" rx="2"/><path d="M2 22h36"/></svg>
-        <h5>Commercial Vehicles</h5>
-        <p>Trucks, buses, and light commercial vehicles requiring heavy-duty durability.</p>
-      </div>
-      <div class="market-icon-card anim-up delay-3">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="30" rx="5" ry="5"/><ellipse cx="28" cy="30" rx="5" ry="5"/><path d="M12 25V14l6-6h8l6 6v11M6 26h6M28 26h6"/></svg>
-        <h5>Two-Wheelers</h5>
-        <p>Motorcycles and scooters including high-performance and electric variants.</p>
-      </div>
-      <div class="market-icon-card anim-up delay-1">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="14" width="26" height="16" rx="2"/><circle cx="8" cy="30" r="5"/><circle cx="32" cy="30" r="5"/><rect x="28" y="8" width="10" height="22" rx="2"/><path d="M28 22h10"/></svg>
-        <h5>Off-Highway</h5>
-        <p>Construction, agriculture, and mining equipment with extreme-duty requirements.</p>
-      </div>
-      <div class="market-icon-card anim-up delay-2">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 4l16 8v16l-16 8L4 28V12z"/><path d="M20 4v28M4 12l16 8 16-8"/></svg>
-        <h5>Electric Vehicles</h5>
-        <p>EV-specific components engineered for high voltage and thermal management demands.</p>
-      </div>
-      <div class="market-icon-card anim-up delay-3">
-        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="8" width="28" height="20" rx="3"/><path d="M14 28v8M26 28v8M10 36h20"/><rect x="12" y="14" width="16" height="8" rx="1"/></svg>
-        <h5>Aftermarket</h5>
-        <p>Replacement parts designed for easy fitment and extending vehicle service life.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EXPANDABLE PRODUCT SECTIONS -->
-<section class="section" style="background:var(--white);">
-  <div class="container">
-    <div class="section-line"><span>Catalogue</span></div>
-    <h2 class="section-title anim-up">Product &amp; Market Details</h2>
-    <p class="section-sub anim-up delay-1">Click any section to explore AutoVerse's comprehensive product offering and market coverage.</p>
-
-    <div class="expand-group anim-up delay-2">
-
-      <div class="expand-item" id="markets">
-        <div class="expand-header">
-          <h3>Markets We Serve</h3>
-          <div class="expand-icon">+</div>
+  <!-- MARKETS WE SERVE -->
+  <section class="section" id="markets">
+    <div class="container">
+      <div class="markets-intro-grid">
+        <div>
+          <div class="section-line"><span>Markets We Serve</span></div>
+          <h2 class="section-title anim-up">Industries We Power</h2>
+          <p class="anim-up delay-1" style="color:var(--slate);margin-bottom:28px;font-weight:300;line-height:1.8;">
+            From compact passenger cars to heavy-duty commercial trucks, AutoVerse supplies critical precision
+            components across every major automotive segment.
+          </p>
+          <div class="market-seg-grid anim-up delay-2">
+            <div class="market-seg-card">
+              <img src="assets/images/markets_segment.jpg"
+                alt="Passenger Vehicles" />
+              <div class="seg-overlay">
+                <h5>Passenger Vehicles</h5>
+                <p>Sedans, SUVs, hatchbacks</p>
+              </div>
+            </div>
+            <div class="market-seg-card">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&auto=format&fit=crop&q=80"
+                alt="Commercial Vehicles" />
+              <div class="seg-overlay">
+                <h5>Commercial Vehicles</h5>
+                <p>Trucks, buses, LCVs</p>
+              </div>
+            </div>
+            <div class="market-seg-card">
+              <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=800&auto=format&fit=crop&q=80"
+                alt="Off-Highway Vehicles" />
+              <div class="seg-overlay">
+                <h5>Off-Highway</h5>
+                <p>Construction &amp; agriculture equipment</p>
+              </div>
+            </div>
+            <div class="market-seg-card">
+              <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&auto=format&fit=crop&q=80"
+                alt="Electric Vehicles" />
+              <div class="seg-overlay">
+                <h5>Electric Vehicles</h5>
+                <p>EV-specific precision components</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>AutoVerse supplies precision components to customers across five core market verticals, supported by dedicated application engineering teams for each segment. Our customer list includes Maruti Suzuki, Tata Motors, Mahindra, Bajaj Auto, Hero MotoCorp, Ashok Leyland, and international OEMs including Stellantis, Volkswagen Group, and Daimler Trucks.</p>
-            <ul>
-              <li>Passenger Vehicles — compact cars to premium SUVs, petrol, diesel, and hybrid</li>
-              <li>Commercial Vehicles — LCVs, HCVs, buses, and specialty fleet vehicles</li>
-              <li>Two-Wheelers — entry motorcycles to performance bikes and e-scooters</li>
-              <li>Off-Highway — construction, agriculture, material handling</li>
-              <li>Electric Vehicles — motor housings, battery enclosures, thermal components</li>
-              <li>Export Markets — Germany, Japan, USA, Mexico, Thailand, South Africa</li>
-            </ul>
+        <div>
+          <div class="markets-visual anim-left">
+            <img src="assets/images/markets_segment.jpg"
+              alt="AutoVerse Automotive Markets" style="margin-bottom:24px;" />
+          </div>
+          <div class="markets-icons-grid">
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="7" width="20" height="10" rx="2" />
+                <path d="M5 7V5a2 2 0 012-2h10a2 2 0 012 2v2" />
+                <circle cx="7" cy="17" r="2" />
+                <circle cx="17" cy="17" r="2" />
+              </svg>
+              <h5>Passenger Cars</h5>
+              <p>35+ OEM supply agreements</p>
+            </div>
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="1" y="8" width="22" height="12" rx="2" />
+                <path d="M5 8V6a2 2 0 012-2h4" />
+                <circle cx="6" cy="20" r="2" />
+                <circle cx="18" cy="20" r="2" />
+              </svg>
+              <h5>Commercial</h5>
+              <p>20+ truck &amp; bus OEMs</p>
+            </div>
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+              <h5>Two-Wheelers</h5>
+              <p>Bajaj, Hero &amp; TVS</p>
+            </div>
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+              </svg>
+              <h5>Electric Vehicles</h5>
+              <p>EV platform components</p>
+            </div>
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 20h.01M7 20v-4" />
+                <path d="M12 20V10" />
+                <path d="M17 20V4" />
+                <path d="M22 20h.01" />
+              </svg>
+              <h5>Off-Highway</h5>
+              <p>Construction equipment</p>
+            </div>
+            <div class="market-icon-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+              <h5>Aftermarket</h5>
+              <p>50+ countries distribution</p>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="expand-item" id="components">
-        <div class="expand-header">
-          <h3>Automotive Components</h3>
-          <div class="expand-icon">+</div>
+  <!-- PRODUCT IMAGE GALLERY -->
+  <section class="section" style="background:var(--offwhite);" id="components">
+    <div class="container">
+      <div class="section-line"><span>What We Make</span></div>
+      <h2 class="section-title anim-up">Automotive Components</h2>
+      <p class="section-sub anim-up delay-1">Precision-engineered parts covering every critical system in modern
+        vehicles.</p>
+      <div class="product-img-grid">
+        <div class="product-img-card anim-up delay-1">
+          <div class="pic"><img
+              src="assets/images/cnc_machining.png"
+              alt="Engine Components" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Engine</span>
+            <h5>Engine Components</h5>
+            <p>Cylinder blocks, crankshafts, camshafts, and pistons machined to micron tolerances.</p>
+          </div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>Our core manufacturing capability covers the powertrain, chassis, and body-in-white systems. Each component family has a dedicated production cell with specialized tooling, fixtures, and quality gates calibrated to the tightest drawing tolerances.</p>
-            <p>Engine &amp; Powertrain:</p>
-            <ul>
-              <li>Cylinder heads &amp; blocks (aluminium and grey iron)</li>
-              <li>Connecting rods and crankshaft journal bearings</li>
-              <li>Camshaft covers and valve train components</li>
-              <li>Oil pump housings and filter adapters</li>
-              <li>Turbocharger housings and heat shields</li>
-              <li>Transmission cases and shift forks</li>
-            </ul>
-            <p style="margin-top:16px;">Chassis &amp; Suspension:</p>
-            <ul>
-              <li>Control arms and steering knuckles</li>
-              <li>Brake caliper housings and anchor plates</li>
-              <li>Wheel hubs and bearing flanges</li>
-              <li>Subframe brackets and cross-members</li>
-            </ul>
+        <div class="product-img-card anim-up delay-2">
+          <div class="pic"><img
+              src="assets/images/transmission_parts.jpg"
+              alt="Transmission Components" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Drivetrain</span>
+            <h5>Transmission Parts</h5>
+            <p>Gears, shafts, and clutch assemblies for manual and automatic transmissions.</p>
+          </div>
+        </div>
+        <div class="product-img-card anim-up delay-3">
+          <div class="pic"><img
+              src="assets/images/quality_control.png"
+              alt="Braking Systems" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Safety</span>
+            <h5>Braking Systems</h5>
+            <p>Calipers, rotors, and ABS rings manufactured to OEM safety standards.</p>
+          </div>
+        </div>
+        <div class="product-img-card anim-up delay-2">
+          <div class="pic"><img
+              src="assets/images/factory_assembly.png"
+              alt="Suspension Components" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Chassis</span>
+            <h5>Suspension &amp; Steering</h5>
+            <p>Control arms, ball joints, and tie rods for precise vehicle dynamics.</p>
+          </div>
+        </div>
+        <div class="product-img-card anim-up delay-3">
+          <div class="pic"><img
+              src="assets/images/factory_assembly.png"
+              alt="Body Structural" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Structure</span>
+            <h5>Body &amp; Structural</h5>
+            <p>Stamped panels, chassis brackets, and structural reinforcements.</p>
+          </div>
+        </div>
+        <div class="product-img-card anim-up delay-4">
+          <div class="pic"><img
+              src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?w=700&auto=format&fit=crop&q=80"
+              alt="Exhaust Systems" /></div>
+          <div class="pic-body">
+            <span class="pic-tag">Exhaust</span>
+            <h5>Exhaust Components</h5>
+            <p>Manifolds, catalytic converter housings, and muffler assemblies.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="expand-item" id="oem">
-        <div class="expand-header">
-          <h3>OEM Products</h3>
-          <div class="expand-icon">+</div>
+  <!-- OEM & AFTERMARKET ACCORDION -->
+  <section class="section" id="oem">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;">
+        <div>
+          <div class="section-line"><span>OEM Supply</span></div>
+          <h2 class="section-title anim-up">OEM Products</h2>
+          <p class="anim-up delay-1" style="color:var(--slate);margin-bottom:32px;font-weight:300;">
+            We manufacture to exact OEM specifications, working directly with vehicle manufacturers from design
+            validation to mass production.
+          </p>
+          <div class="accordion-container" id="aftermarket">
+            <div class="accordion-item active">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                Design &amp; Validation Support <span class="icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>Our engineering team works alongside OEM design teams from concept through PPAP. We provide DFM
+                  analysis, prototype fabrication, and full APQP documentation.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                High-Volume Serial Production <span class="icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>Dedicated production lines with SPC monitoring, automated inspection, and 100% traceability for
+                  volumes from 10,000 to 10 million parts annually.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                Just-in-Time Delivery <span class="icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>98.7% on-time delivery backed by regional warehousing, dedicated logistics partnerships, and
+                  real-time supply chain visibility tools.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                Aftermarket Parts Supply <span class="icon">+</span>
+              </button>
+              <div class="accordion-content">
+                <p>OEM-equivalent aftermarket parts for the global replacement market, distributed through 50+ country
+                  distributor networks with full warranty support.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>Our OEM business accounts for 70% of revenue. We are a preferred Tier 1 and Tier 2 supplier to India's largest vehicle manufacturers, operating under long-term supply agreements with annual volume commitments. All OEM products are manufactured to the customer's proprietary drawings with full PPAP documentation.</p>
-            <ul>
-              <li>Program management from DFMEA to PPAP Level 3</li>
-              <li>Co-located engineering support at customer facilities on request</li>
-              <li>EDI integration with customer ERP systems (SAP, Oracle)</li>
-              <li>JIT delivery directly to assembly line — no buffer warehousing</li>
-              <li>Kanban replenishment with 48-hour emergency pull capability</li>
-              <li>Dedicated quality engineer resident at top-3 customer plants</li>
-              <li>Annual cost-reduction proposals (VA/VE) submitted every Q3</li>
-              <li>Digital twin capability for virtual prototype validation</li>
-            </ul>
+        <div class="anim-left">
+          <img src="assets/images/factory_assembly.png"
+            alt="OEM Manufacturing"
+            style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);margin-bottom:24px;" />
+          <img src="assets/images/quality_control.png"
+            alt="Quality Assurance" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUALITY SECTION -->
+  <section class="section" style="background:var(--offwhite);" id="quality">
+    <div class="container">
+      <div class="section-line"><span>Our Standards</span></div>
+      <h2 class="section-title anim-up">Quality You Can Count On</h2>
+      <p class="section-sub anim-up delay-1">Every AutoVerse component passes through rigorous, multi-stage quality
+        verification before delivery.</p>
+      <div class="quality-grid">
+        <div class="quality-item anim-up delay-1">
+          <div class="quality-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg></div>
+          <div>
+            <h5>IATF 16949 Certified</h5>
+            <p>Automotive sector quality management system — the gold standard for OEM suppliers.</p>
+          </div>
+        </div>
+        <div class="quality-item anim-up delay-2">
+          <div class="quality-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg></div>
+          <div>
+            <h5>CMM Measurement</h5>
+            <p>Zeiss coordinate measuring machines provide 100% dimensional inspection on critical features.</p>
+          </div>
+        </div>
+        <div class="quality-item anim-up delay-3">
+          <div class="quality-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg></div>
+          <div>
+            <h5>Vision Inspection Systems</h5>
+            <p>Automated optical inspection detects surface defects and dimensional variations at line speed.</p>
+          </div>
+        </div>
+        <div class="quality-item anim-up delay-4">
+          <div class="quality-item-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg></div>
+          <div>
+            <h5>SPC Monitoring</h5>
+            <p>Statistical Process Control monitors every production parameter in real time, preventing deviations.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="expand-item" id="aftermarket">
-        <div class="expand-header">
-          <h3>Aftermarket Products</h3>
-          <div class="expand-icon">+</div>
+  <!-- CATALOGUE CTA -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="catalogue-cta anim-up">
+        <div>
+          <h3>Download Our Product Catalogue</h3>
+          <p>Complete specification sheets, material grades, and tolerance data for all AutoVerse product lines.</p>
         </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>AutoVerse's aftermarket division — operating under the <strong>AV Pro</strong> brand — offers a catalogue of 2,400+ part numbers covering vehicles up to 12 years in service. Our aftermarket parts match or exceed OEM dimensional and material specifications, and are distributed through a network of 1,800+ authorised dealers across India.</p>
-            <ul>
-              <li>Brake pads, rotors, and caliper rebuild kits</li>
-              <li>Engine gasket sets and head gaskets</li>
-              <li>Timing belt and chain kits with tensioners</li>
-              <li>Wheel bearing hub assemblies</li>
-              <li>Clutch pressure plate and disc kits</li>
-              <li>Fuel pump and injector service kits</li>
-              <li>Air filter and oil filter elements (OEM-equivalent)</li>
-              <li>Anti-roll bar links and rubber bushings</li>
-              <li>Shock absorber mounts and bump stops</li>
-              <li>Wiper mechanisms and motor assemblies</li>
-            </ul>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0;">
+          <a href="contact.html" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download Catalogue
+          </a>
+          <a href="contact.html" class="btn btn-outline" style="color:white;border-color:rgba(255,255,255,.3);">Request
+            Custom Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container cta-inner">
+      <div class="cta-text anim-up">
+        <span class="tag">Ready to Source?</span>
+        <h2>Let's Discuss Your<br>Component Requirements</h2>
+        <p>Share your specifications and our team will respond with a competitive quote within 48 hours.</p>
+      </div>
+      <div class="cta-actions anim-up delay-2">
+        <a href="contact.html" class="btn btn-primary">Request a Quote</a>
+        <a href="about.html" class="btn btn-outline">About AutoVerse</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+            <img src="assets/images/logo.png" alt="AutoVerse" class="nav-logo-img" style="height:38px;" />
+          </a>
+          <p>Precision-engineered automotive components for the world's leading vehicle manufacturers.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="5" />
+              </svg></a>
+            <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16"
+                fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg></a>
+          </div>
+          <div class="footer-certs">
+            <span class="footer-cert-badge">ISO 9001:2015</span>
+            <span class="footer-cert-badge">IATF 16949</span>
+            <span class="footer-cert-badge">ISO 14001</span>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html#history">Our History</a></li>
+            <li><a href="about.html#vision">Vision &amp; Mission</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Products</h5>
+          <ul>
+            <li><a href="#components">Engine Components</a></li>
+            <li><a href="#oem">OEM Products</a></li>
+            <li><a href="#aftermarket">Aftermarket Parts</a></li>
+            <li><a href="#quality">Quality Standards</a></li>
+            <li><a href="careers.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            <span>Plot 14, MIDC, Pimpri-Chinchwad,<br>Pune 411019, Maharashtra</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+            </svg>
+            <span>+91 20 2712 4800</span>
           </div>
         </div>
       </div>
-
-      <div class="expand-item" id="quality">
-        <div class="expand-header">
-          <h3>Quality Standards</h3>
-          <div class="expand-icon">+</div>
-        </div>
-        <div class="expand-body">
-          <div class="expand-inner">
-            <p>Quality is not a department at AutoVerse — it is a built-in attribute of every process. We operate a zero-defect manufacturing philosophy anchored by our 7-gate Quality Management System, which controls every stage from raw material receipt through to customer shipment.</p>
-            <ul>
-              <li>IATF 16949:2016 certified across all three plants</li>
-              <li>ISO 9001:2015 — baseline QMS for all product families</li>
-              <li>ISO 14001:2015 — environmental management at each site</li>
-              <li>OHSAS 18001 — occupational health and safety system</li>
-              <li>100% critical dimension inspection via Zeiss CMM</li>
-              <li>Real-time SPC on all key process characteristics</li>
-              <li>Automated vision inspection at end-of-line for cosmetic attributes</li>
-              <li>Cp/Cpk ≥ 1.67 required at all critical features before production release</li>
-              <li>Annual internal audits + bi-annual third-party surveillance</li>
-              <li>Customer-specific requirements (CSR) management per AIAG/VDA</li>
-            </ul>
-          </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
+        <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a>
         </div>
       </div>
+    </div>
+  </footer>
 
-    </div>
-  </div>
-</section>
+  <a href="https://wa.me/912027124800" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.458L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.625 1.451 5.403.002 9.803-4.394 9.806-9.799.002-2.617-1.01-5.078-2.854-6.924C16.379 2.036 13.924 1.02 11.3 1.018c-5.41 0-9.81 4.403-9.813 9.806-.001 1.702.443 3.36 1.287 4.81l-.993 3.626 3.71-.973z" />
+    </svg>
+  </a>
+  <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+      stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-cell">
-        <div class="stat-num"><span data-count="2400" data-suffix="+">0</span></div>
-        <div class="stat-label">Active Part Numbers</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span data-count="50" data-suffix="+">0</span></div>
-        <div class="stat-label">Export Countries</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span data-count="30" data-suffix="+">0</span></div>
-        <div class="stat-label">OEM Customers</div>
-      </div>
-      <div class="stat-cell">
-        <div class="stat-num"><span data-count="99" data-suffix=".2%">0</span></div>
-        <div class="stat-label">PPM Quality Rating</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-bg"></div>
-  <div class="container cta-inner">
-    <div class="cta-text anim-up">
-      <span class="tag">Request a Sample</span>
-      <h2>Evaluate AutoVerse Quality<br>First-Hand</h2>
-      <p>Our engineering team can prepare first-article samples and full PPAP documentation within your program timeline.</p>
-    </div>
-    <div class="cta-actions anim-up delay-2">
-      <a href="contact.html" class="btn btn-primary">Request a Quote</a>
-      <a href="about.html" class="btn btn-outline">Learn About Us</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><div class="nav-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg></div>Auto<span>Verse</span></a>
-        <p>Precision-engineered automotive components for the world's leading vehicle manufacturers. Built to last, delivered on time.</p>
-        <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg></a>
-          <a href="#" class="social-btn" aria-label="Twitter/X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="about.html#history">Our History</a></li><li><a href="about.html#vision">Vision &amp; Mission</a></li><li><a href="about.html#strengths">Our Strengths</a></li></ul></div>
-      <div class="footer-col"><h5>Products</h5><ul><li><a href="markets.html#components">Engine Components</a></li><li><a href="markets.html#oem">OEM Products</a></li><li><a href="markets.html#aftermarket">Aftermarket Parts</a></li><li><a href="markets.html#quality">Quality Standards</a></li><li><a href="careers.html">Careers</a></li></ul></div>
-      <div class="footer-col"><h5>Contact</h5>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Plot 14, MIDC Industrial Area, Pimpri-Chinchwad, Pune 411019, Maharashtra, India</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3-8.59A2 2 0 012.18 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span>+91 20 2712 4800</span></div>
-        <div class="footer-contact-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>info@autoverse.in</span></div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 AutoVerse Industries Pvt. Ltd. All rights reserved.</span>
-      <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Sitemap</a></div>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/js/main.js"></script>
+  <script>
+    function toggleAccordion(btn) {
+      const item = btn.closest('.accordion-item');
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item.active').forEach(el => el.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
+    }
+  </script>
+  <script src="assets/js/main.js"></script>
 </body>
+
 </html>

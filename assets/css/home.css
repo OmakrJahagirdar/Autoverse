@@ -274,29 +274,68 @@
 .product-link span { transition: var(--transition); }
 .product-link:hover span { transform: translateX(4px); }
 
-/* CLIENTS */
+/* CLIENTS — infinite marquee */
 .clients-section { background: var(--white); }
-.clients-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0; flex-wrap: wrap;
+
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Outer mask — clips overflow and adds edge fade */
+.clients-marquee {
+  position: relative;
+  overflow: hidden;
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-lg);
-  overflow: hidden;
 }
+.clients-marquee::before,
+.clients-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+.clients-marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--white) 0%, transparent 100%);
+}
+.clients-marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--white) 0%, transparent 100%);
+}
+
+/* Scrolling track — never wraps, moves left continuously */
+.clients-track {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  animation: marquee-scroll 28s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover */
+.clients-marquee:hover .clients-track {
+  animation-play-state: paused;
+}
+
+/* Individual logo tiles */
 .client-logo {
-  flex: 1; min-width: 120px;
-  padding: 28px 20px;
+  flex-shrink: 0;
+  width: 180px;
+  padding: 28px 24px;
   text-align: center;
   font-family: var(--ff-display);
   font-size: 1.1rem; font-weight: 800;
   letter-spacing: .04em;
   color: var(--gray-400);
   border-right: 1px solid var(--gray-200);
-  transition: var(--transition);
+  transition: background var(--transition), color var(--transition);
   cursor: default;
   line-height: 1.2;
 }
-.client-logo:last-child { border-right: none; }
 .client-logo small { font-size: .65rem; font-weight: 500; display: block; letter-spacing: .06em; }
 .client-logo:hover { background: var(--navy); color: white; }
 
@@ -354,7 +393,7 @@
   transition: var(--transition);
 }
 .facility-card:hover { background: rgba(255,255,255,.07); transform: translateY(-4px); }
-.facility-img svg { display: block; width: 100%; height: auto; }
+.facility-img svg, .facility-img img { display: block; width: 100%; height: auto; aspect-ratio: 400/240; object-fit: cover; }
 .facility-body { padding: 24px; }
 .facility-tag {
   font-family: var(--ff-ui);
@@ -423,8 +462,7 @@
   .hero-content { padding-top: 48px; padding-bottom: 48px; margin-left: 0; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   .products-grid { grid-template-columns: 1fr; max-width: 420px; }
-  .clients-row { flex-direction: column; }
-  .client-logo { border-right: none; border-bottom: 1px solid var(--gray-200); width: 100%; }
+  /* clients-marquee works at all widths — no override needed */
   .why-grid { grid-template-columns: 1fr; }
   .cta-inner { flex-direction: column; }
 }
